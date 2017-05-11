@@ -28,12 +28,11 @@ The VM is based on the Scientific Linux distribution. It contains the Fermi Scie
 5. Click on `Continue` and on the next screen click on `Import`. This step may take a few minutes.
 6. Once you do that, you should see a window that looks something like the following. Click `Start` to start up the VM. You should see a window pop up, and see Linux starting up inside that window.
 
-SCREENSHOT: virtual box window listing the virtual machine after import
+![](./figures/virtualbox.png "VirtualBox window listing the VM after successfull import")
 
 7. In the end, you should have a window that looks like this. Contact the organizers for the password. You are good to go!
 
-SCREENSHOT: STARTING WINDOWS with user
-
+![](./figures/welcome_screen.png "VM after booting")
 
 
 # Tutorials
