@@ -16,7 +16,7 @@ In order to run the VM, you will need to [download and install the VirtualBox bi
 ## Download links
 
 1. [VirtualBox download](https://www.virtualbox.org/wiki/Downloads)
-2. [Virtual machine with all software and data]() (6 GB)
+2. Virtual machine with all software and data (6 GB)
 
 The VM is based on the Scientific Linux distribution. It contains the Fermi ScienceTools and Enrico. You will need about 12 GB of free space in your computer: 5 GB for the download and 7 GB for the VM.
 
@@ -40,16 +40,16 @@ SCREENSHOT: STARTING WINDOWS with user
 
 ## Day one
 
-- 4:30-5:00: Introduction, overview of activities and tools (slides)
-- 5:00-6:00: [Obtaining and exploring LAT data for your favorite source](./day01.md)
-- 6:00-6:30: Inspecting the data: Plotting the count map
+- 4:30-5:00: [Introduction, overview of activities and tools (slides)](./day01-intro_slides.pdf)
+- 5:00-6:00: [Obtaining and exploring LAT data for your favorite source](./explore.md)
+- 6:00-6:30: [Inspecting the data: Plotting the count map](./countmap.md)
 
 ## Day two
 
-- 4:30-5:00: Overview of activity, basic theory of spectral modeling (slides)
-- 5:00-5:30: [Spectral modeling of a blazar: Likelihood analysis](./day02.md)
-- 5:30-6:30: Creating a spectrum (SED)
-- Bonus: Producing a light-curve
+- 4:30-5:00: [Overview of activity, basic theory of spectral modeling (slides)](./day02-intro_slides.pdf)
+- 5:00-5:30: [Spectral modeling of a blazar: Likelihood analysis](./likelihood.md)
+- 5:30-6:30: [Creating a spectrum (SED)](./sed.md)
+- Bonus: [Producing a light-curve](./lc.md)
 
 # Acknowledgements
 
@@ -66,4 +66,6 @@ SCREENSHOT: STARTING WINDOWS with user
 
 [`rodrigo.nemmen -> iag usp br`](http://rodrigonemmen.com/contact)
 
-[Visit the author's web page](http://rodrigonemmen.com/) and/or follow him on twitter ([@nemmen](https://twitter.com/nemmen)).
+[Author's web page](https://rodrigonemmen.com/)
+
+Twitter: [@nemmen](https://twitter.com/nemmen)
