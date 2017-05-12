@@ -53,12 +53,28 @@ Also, note that the ScienceTools have their own Python distribution which confli
 Here we will learn how to extract LAT data files from the *FERMI Science Support Center* (FSSC) databases. In order to analyze LAT data, you will need:
 
 1. An *events file* containing the recorded events--which include detected photons and cosmic rays--that correspond to your source of interest, as well as the area surrounding that source. The size of this surrounding "region-of-interest", or ROI, that you choose will depend on the density and brightness of nearby sources, as well as the type of analysis you are performing. 
+
+The most important parameters in the events file are:
+
+- (RA, DEC) (degrees). Equatorial coordinates called right ascension RA and declination DEC.
+- (L, B) (degrees). Galactic coordinates called Galactic longitude L and latitude B.
+- ENERGY (MeV)
+- TIME (seconds). Mission elapsed time when the event was detected. (MET is the total number of seconds since 00:00:00 on January 1, 2001 UTC)
+
 2. A *spacecraft file* containing spacecraft position and orientation information at 30 second intervals. This file is required for LAT science analysis. You can use the same spacecraft file (~700 MB for 5 years) for all your analyses as long as it covers the time range you want to analyze. That’s all you need to know about the spacecraft data file. The LAT data server will only generate a single spacecraft file, regardless of the size of the dataset.
 3. Most analyses also require *models of the isotropic and Galactic diffuse background*. 
 
-All the required files are pre-installed in the VM.
+All these files are pre-installed in the VM.
 
+In this tutorial we will have a quick look at the Fermi LAT dataset by binning the events into histograms:
 
+A 2-dimensional (L, B) histogram is called a counts image.
+A 1-dimensional ENERGY histogram is called a counts spectrum.
+A 1-dimensional TIME histogram is called a counts lightcurve.
+
+In the Day 2 hand-on session, we will show you how to create a flux spectrum, flux lightcurve and flux image, where flux = counts / exposure and exposure = (effective area) x (observation time) and in addition to exposure the spatial resolution, called point spread function (PSF), and energy resolution have been taken into account.
+
+\\[ x = {-b \pm \sqrt{b^2-4ac} \over 2a} \\]
 
 ## Procedure 
 
