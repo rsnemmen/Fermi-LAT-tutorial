@@ -1,6 +1,13 @@
 Obtaining and preparing LAT data for your favorite source
 =====================================================
 
+This hands-on lesson is structured in the following way:
+
+1. Software: describes the software that will be used
+2. Types of Fermi LAT data
+3. How to obtain (download) the data
+4. How to prepare the data
+
 # Software
 
 The following software will be needed for this hands-on activity:
@@ -48,7 +55,7 @@ In order to get the ScienceTools and Enrico working together, you need to setup 
 Also, note that the ScienceTools have their own Python distribution which conflicts with any pre-existing Python installed on your system, hence the need for setting up the environment variables properly. Keep that in mind.
 
 
-# Extracting the Data
+# Types of *Fermi* LAT Data files
 
 Here we will learn how to extract LAT data files from the *FERMI Science Support Center* (FSSC) databases. In order to analyze LAT data, you will need:
 
@@ -68,45 +75,62 @@ All these files are pre-installed in the VM.
 
 In this tutorial we will have a quick look at the Fermi LAT dataset by binning the events into histograms:
 
-A 2-dimensional (L, B) histogram is called a counts image.
-A 1-dimensional ENERGY histogram is called a counts spectrum.
-A 1-dimensional TIME histogram is called a counts lightcurve.
+- A 2-dimensional (L, B) histogram is called a counts image.
+- A 1-dimensional ENERGY histogram is called a counts spectrum.
+- A 1-dimensional TIME histogram is called a counts lightcurve.
 
-In the Day 2 hand-on session, we will show you how to create a flux spectrum, flux lightcurve and flux image, where flux = counts / exposure and exposure = (effective area) x (observation time) and in addition to exposure the spatial resolution, called point spread function (PSF), and energy resolution have been taken into account.
+In the Day 2 hand-on session, we will show you how to create a *flux spectrum (SED)*, *flux lightcurve* and *flux image*, where `flux = counts / exposure` and `exposure = (effective area) x (observation time)` and in addition the exposure, the spatial resolution--called point spread function (PSF)--and energy resolution have all been taken into account.
 
-\\[ x = {-b \pm \sqrt{b^2-4ac} \over 2a} \\]
 
-## Procedure 
+# Obtain LAT data 
 
-To select all photons within a circular region around the source:
+First, you need to decide what kind of source you want to analyze, i.e. which part of the sky are your LAT photons coming from? In this tutorial, we will give three options of sources. Pick the one you prefer:
 
-1. Go to the FSSC's web site data server: [https://fermi.gsfc.nasa.gov/cgi-bin/ssc/LAT/LATDataQuery.cgi](https://fermi.gsfc.nasa.gov/cgi-bin/ssc/LAT/LATDataQuery.cgi)
+- A **supermassive black hole powering a relativistic jet**: cool! In this case, we suggest the brightest blazar seen so far by LAT--the FSRQ blazar 3C 454.3 (catalog name `3FGL J2254.0+1608`) located at coordinates RA = 343.5˚ and Dec = 16.15˚
+- A **pulsar**: you are a stellar person, huh? We suggest the brightest pulsar seen by LAT--the Vela pulsar--located at coordinates RA = 128.84˚, Dec = -45.18˚
+- Our **Galactic Center** (GC): this region of the sky points in the direction of our nearest supermassive black hole--Sagittarius A*--and also the highest density of dark matter in the Milky Way. It is located at coordinates RA = 266.3˚ and Dec = -28.72˚
 
-2. In this thread we will use this set of parameters:
+Once you select your favorite source for inspection which will define the sky coordinates of interest, the next step is to decide (i) the extension of the region around the source for which you want to extract photons (the region of interest, ROI), (ii) the range of observations dates and (iii) the photon energy range. We suggest the following choices:
 
-* Object name or coordinates: 193.98, -5.82
+- Search radius for region of interest around source: 20˚
+- Date range (MET): 441763203, 457401604. LAT uses a very special time unit called the [Mission Elapsed Time (MET)](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data/Time_in_ScienceTools.html) which is the number of seconds since midnight at the beginning of January 1, 2001, in the UTC system. The range given here corresponds to the first semester of 2015.
+- Energy range (MeV): 100, 300000. This is the normal energy range used in LAT analysis.
 
+Once you made your choices for selecting the photons, normally you would go to go to the NASA FSSC server website, input the selection criteria and download the files. However, in order to save time and bandwidth, all the necessary files have already been downloaded and are available in the folder `sources`. *You do not need to download the data for this activity.*
+
+We describe below the step-by-step instructions for downloading the data files from the server. You do not need to do this for the activity.
+
+
+## Instructions for downloading the data (not needed for hands-on)
+
+Now we will learn how to extract and download the LAT data from the FSSC server. To select all photons within a circular region around the source:
+
+1. Go to the [FSSC's web site data server](https://fermi.gsfc.nasa.gov/cgi-bin/ssc/LAT/LATDataQuery.cgi)
+2. Input the following set of parameters:
+
+* Object name or coordinates: *[choose the coordinates depending on your favorite source: pulsar, blazar or GC]*
 * Coordinate system: "J2000"
-
-* Search radius (degrees): 12
-
-* Observation dates: START, 255398400
-
+* Search radius (degrees): 20
+* Observation dates: 441763203, 457401604 *[if you enter `START` in the first field, it will extract photons since the beginning of the mission]*
 * Time system: "MET"
-
 * Energy range (MeV): 100, 300000
-
 * LAT data type: "Photon"
-
 * Spacecraft data: "checked"
 
-1. Click on the 'Start Search' button. The 'Query Submitted' webpage will be displayed and provide an estimate of the time to complete the query, as well as a link to the results webpage.
+![](./figures/FSSC_query.png "FSSC query website")
 
-When you go to this new webpage —'LAT Data Query Results' — you may be told that the query is not yet complete. This webpage will show you a link to where the results of your query can be found. When the query is complete, the data file list will include links to the files themselves.
+3. Click on the 'Start Search' button. The 'Query Submitted' webpage will be displayed and provide an estimate of the time to complete the query, as well as a link to the results webpage.
 
-1. Now we have the spacecraft (pointing and livetime history) file and events data file. There may be multiple events files (_PH##), but there should be only a single spacecraft (_SC##) file. We’ll have to save them in order to use the Fermi Science Tools. Since they are not installed in the computers we are using, we will access another computer remotely.
+![](./figures/FSSC_submitted.png)
 
-2. Open the terminal in your computer, by pressing crtl + alt + t. Then, type:
+When you go to this new webpage--'LAT Data Query Results'--you may be told that the query is not yet complete. This webpage will show you a link to where the results of your query can be found. When the query is complete, the data file list will include links to the files themselves.
+
+![](./figures/query_results.png)
+
+xxxxxxx
+4. Now we have the spacecraft (pointing and livetime history) file and events data file. There may be multiple events files (_PH##), but there should be only a single spacecraft (_SC##) file. We’ll have to save them in order to use the Fermi Science Tools. Since they are not installed in the computers we are using, we will access another computer remotely.
+
+5. Open the terminal in your computer, by pressing crtl + alt + t. Then, type:
 
 <table>
   <tr>
@@ -118,7 +142,7 @@ When you go to this new webpage —'LAT Data Query Results' — you may be told 
 
 	Now you are accessing a computer with all the tools necessary in this tutorial.
 
-3. Each one will create a directory in this machine. You can use your own name as the name of your directory:
+6. Each one will create a directory in this machine. You can use your own name as the name of your directory:
 
 <table>
   <tr>
@@ -128,11 +152,13 @@ When you go to this new webpage —'LAT Data Query Results' — you may be told 
 </table>
 
 
-4. Now you can download via wget the files generated on step 4 above. You just need to use the commands available in the bottom of the webpage.
+7. Now you can download via wget the files generated on step 4 above. You just need to use the commands available in the bottom of the webpage.
 
 If you want to know the details about the files you just downloaded, you can check:
 
 [https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data/LAT_Data_Columns.html](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data/LAT_Data_Columns.html)
+
+
 
 # Data Preparation
 
