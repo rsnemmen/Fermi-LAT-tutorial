@@ -15,6 +15,8 @@ In order to run the VM, you will need to [download and install the VirtualBox bi
 
 ## Download links
 
+*Please do not download large files during the tutorial or the WIFI network will overload*. We will distribute the software and data you need via USB sticks, if you did not download it before the school.
+
 1. [VirtualBox download](https://www.virtualbox.org/wiki/Downloads)
 2. Virtual machine with all software and data (6 GB)
 
