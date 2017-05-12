@@ -1,15 +1,47 @@
 Obtaining and exploring LAT data for your favorite source
 =====================================================
 
-# Software tools
+# Software
 
-I assume that you all already installed the VM and Virtual Box
-overview of software that will be used: Science Tools and enrico
-they are installed in the VM and ready to use
+The following software will be needed for this hands-on activity:
 
+- `Fermi ScienceTools`
+- `ds9`
+- `Enrico`
 
+**Important:** All the analysis software and data files required for this hands-on activity are already installed in a ready-to-use, self-contained [virtual machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine). The VM runs on Windows, Linux and MacOS. *Please do not download large files during the tutorial or the WIFI network will overload*. We will also distribute the software and data you need via USB sticks, if you did not download them before the school.
 
-Nice explanation of the analysis steps in the FermiPy tutorial
+We describe below the purpose of each tool. 
+
+## `Fermi ScienceTools`
+
+The main analysis software you will use for this hands-on activity is the Fermi data analysis software called the [`Fermi ScienceTools`](https://fermi.gsfc.nasa.gov/ssc/data/analysis/software/).
+
+The ScienceTools consists of several tools that can be called using the command-line to perform different tasks in the analysis. 
+
+The [Fermi Science Support Center web pages](https://fermi.gsfc.nasa.gov/ssc/) contain a lot of information about Fermi data access and data analysis. If you have a problem you or Google can’t solve, you can contact the official [NASA Fermi help desk](https://fermi.gsfc.nasa.gov/ssc/help/).
+
+## `ds9`
+
+[SAOImage DS9](http://ds9.si.edu/site/Home.html) is one of the best viewers for astronomical 2D images and 3D cubes.
+
+## `Enrico`
+
+[Enrico](http://enrico.readthedocs.io/en/latest/index.html
+) is a set of high-level Python scripts that help immensely with performing common Fermi LAT data analysis tasks. For example:
+
+- Data and model preparation with the `gt-tools`
+- Extracting a spectral energy distribution (SED) of a source
+- Generating TS and residual maps for a region of interest
+- among many other uses
+
+`Enrico` takes a single config file as input where you specify what kind of analysis you want to run and the most important analysis parameters, and then run all Fermi science tools in the right order (or in parallel where possible) with the right parameters for you.
+
+An alternative set of Python wrappers is [FermiPy](http://fermipy.readthedocs.io/en/latest/) which provides similar functionality and convenience as `Enrico`. 
+
+## Setting environment variables
+
+In order to get the ScienceTools and Enrico working together, you need to setup some environment variables after installing the software. If you are curious, please have a look at the `.bashrc` init file located in your home directory in the VM.
 
 
 # Extracting the Data
@@ -21,7 +53,7 @@ Only one type of event data file is needed to perform LAT science analysis. We r
 A spacecraft file containing spacecraft position and orientation information at 30 second intervals. This file is required for LAT science analysis. The LAT data server will only generate a single spacecraft file, regardless of the size of the dataset.
 Some analyses also require models of the isotropic and Galactic diffuse background models. You can download them from the Background Models page.
 
-This thread leads you through extracting your LAT data files from the FERMI Science Support Center (FSSC) databases. In order to analyze LAT data, you will need:
+Here we will learn how to extract LAT data files from the *FERMI Science Support Center* (FSSC) databases. In order to analyze LAT data, you will need:
 
 1. An **events file** containing the recorded events that correspond to your source of interest, as well as the area surrounding that source. The size of this surrounding "region-of-interest", or ROI, that you choose will depend on the density and brightness of nearby sources, as well as the type of analysis you are performing. 
 

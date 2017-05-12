@@ -7,20 +7,21 @@ This activity has a total duration of 4 hours distributed in two days. Given the
 
 # Pre-requisites
 
-All the analysis software and data files required for this hands-on activity are already installed in a ready-to-use, self-contained [virtual machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine). It also contains the software required for the other hands-on activities (Kowal, Tchekhovskoy). The VM runs on Windows, Linux and MacOS.
+To participate in the tutorial we recommend that you bring your laptop. Your laptop should have at least 4GB of RAM in order to comfortably run the VM. You will need about 17 GB of free space in your computer: 5 GB for the download and 13 GB to install the VM.
 
-We recommend that you start downloading early our virtual machine, given the large file size. The necessary files will also be available in the flash drives which will be distributed to the school participants.   
+All the analysis software and data files required for this hands-on activity are already installed in a ready-to-use, self-contained [virtual machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine). The VM runs on Windows, Linux and MacOS and is based on the *Scientific Linux distribution*. It contains the `Fermi ScienceTools`, `Enrico` and `ds9`.
+
 
 In order to run the VM, you will need to [download and install the VirtualBox binaries](https://www.virtualbox.org/wiki/Downloads) appropriate for your OS. 
 
 ## Download links
 
-*Please do not download large files during the tutorial or the WIFI network will overload*. We will distribute the software and data you need via USB sticks, if you did not download it before the school.
+We recommend that you start downloading early our virtual machine, given the large file size. 
+
+*Please do not download large files during the tutorial or the WIFI network will overload*. We will also distribute the software and data you need via USB sticks, if you did not download them before the school.
 
 1. [VirtualBox download](https://www.virtualbox.org/wiki/Downloads)
 2. Virtual machine with all software and data (6 GB)
-
-The VM is based on the *Scientific Linux distribution*. It contains the *Fermi ScienceTools* and *Enrico*. You will need about 17 GB of free space in your computer: 5 GB for the download and 13 GB to install the VM.
 
 ## Instructions for installing VM
 
@@ -57,6 +58,7 @@ The VM is based on the *Scientific Linux distribution*. It contains the *Fermi S
 - Luis Ricardo Manrique, Marco Antonio dos Santos: for general IT help and installing the VM on all the lab desktop machines
 - Fabio Cafardo, Raniere Menezes: for general brainstorming, helping with preparation of the tutorials and testing the VM
 - LAT Collaboration, particularly Jeremy Perkins: for inspiration on the activities (very helpful [analysis threads](https://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/)) and the idea of the VM
+- Christoph Deil and Victor Zabalza for [their nice tutorial](http://fermi-hero.readthedocs.io/en/latest/index.html#) which inspired parts of this one
 
 # TODO (future)
 
