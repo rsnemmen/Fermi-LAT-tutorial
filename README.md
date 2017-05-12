@@ -26,14 +26,14 @@ We recommend that you start downloading early our virtual machine, given the lar
 ## Instructions for installing VM
 
 1. Install and launch [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
-3. Click on `File` -> `Import Appliance`.
-4. Browse and select the VM file (`XXXXXXX name of file`).
-5. Click on `Continue` and on the next screen click on `Import`. This step may take a few minutes.
-6. Once you do that, you should see a window that looks something like the following. Click `Start` to start up the VM. You should see a window pop up, and see Linux starting up inside that window.
+2. Click on `File` -> `Import Appliance`.
+3. Browse and select the VM file (`XXXXXXX name of file`).
+4. Click on `Continue` and on the next screen click on `Import`. This step may take a few minutes.
+5. Once you do that, you should see a window that looks something like the following. Click `Start` to start up the VM. You should see a window pop up, and see Linux starting up inside that window.
 
 ![](./figures/virtualbox.png "VirtualBox window listing the VM after successfull import")
 
-7. In the end, you should have a window that looks like this. Contact the organizers for the password. You are good to go!
+6. In the end, you should have a window that looks like this. Contact the organizers for the password. You are good to go!
 
 ![](./figures/welcome_screen.png "VM after booting")
 
@@ -43,8 +43,8 @@ We recommend that you start downloading early our virtual machine, given the lar
 ## Day one
 
 - 4:30-5:00: [Introduction, overview of activities and tools (slides)](./day01-intro_slides.pdf)
-- 5:00-6:00: [Obtaining and exploring LAT data for your favorite source](./explore.md)
-- 6:00-6:30: [Inspecting the data: Plotting the count map](./countmap.md)
+- 5:00-5:30: [Obtaining and preparing LAT data for your favorite source](./prepare.md)
+- 5:30-6:30: [Exploring and inspecting LAT data: Plotting the counts map](./explore.md)
 
 ## Day two
 
