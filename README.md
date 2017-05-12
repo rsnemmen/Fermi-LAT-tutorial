@@ -18,7 +18,7 @@ In order to run the VM, you will need to [download and install the VirtualBox bi
 1. [VirtualBox download](https://www.virtualbox.org/wiki/Downloads)
 2. Virtual machine with all software and data (6 GB)
 
-The VM is based on the Scientific Linux distribution. It contains the Fermi ScienceTools and Enrico. You will need about 12 GB of free space in your computer: 5 GB for the download and 7 GB for the VM.
+The VM is based on the *Scientific Linux distribution*. It contains the *Fermi ScienceTools* and *Enrico*. You will need about 17 GB of free space in your computer: 5 GB for the download and 13 GB to install the VM.
 
 ## Instructions for installing VM
 
