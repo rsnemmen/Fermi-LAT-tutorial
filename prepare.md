@@ -121,7 +121,7 @@ Now we will learn how to extract and download the LAT data from the FSSC server.
 
 3. Click on the 'Start Search' button. The 'Query Submitted' webpage will be displayed and provide an estimate of the time to complete the query, as well as a link to the results webpage.
 
-![](./figures/FSSC_submitted.png)
+![](./figures/query_submitted.png)
 
 When you go to this new webpage--'LAT Data Query Results'--you may be told that the query is not yet complete. This webpage will show you a link to where the results of your query can be found. When the query is complete, the data file list will include links to the files themselves.
 
