@@ -27,7 +27,7 @@ We recommend that you start downloading early our virtual machine, given the lar
 
 1. Install and launch [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 2. Click on `File` -> `Import Appliance`.
-3. Browse and select the VM file (`XXXXXXX name of file`).
+3. Browse and select the VM file (`Hands-on Scientific Linux.ova`).
 4. Click on `Continue` and on the next screen click on `Import`. This step may take a few minutes.
 5. Once you do that, you should see a window that looks something like the following. Click `Start` to start up the VM. You should see a window pop up, and see Linux starting up inside that window.
 
