@@ -3,13 +3,13 @@ Obtaining and preparing LAT data for your favorite source
 
 This hands-on lesson is structured in the following sections:
 
-1. Software that will be used
-2. Types of Fermi LAT data
-3. How to obtain (download) the data
+1. [Software that will be used](#software)
+2. [Types of Fermi LAT data](#data)
+3. [How to obtain (download) the data](#download)
 4. First inspection of LAT photon files
 4. How to prepare the data
 
-# Software
+# <a name=“software”></a>Software
 
 The following software will be needed for this hands-on activity:
 
@@ -61,7 +61,7 @@ In order to get the ScienceTools and Enrico working together, you need to setup 
 Also, note that the ScienceTools have their own Python distribution which conflicts with any pre-existing Python installed on your system, hence the need for setting up the environment variables properly. Keep that in mind.
 
 
-# Types of *Fermi* LAT Data files
+# <a name=“data”></a>Types of *Fermi* LAT Data files
 
 Here we will learn how to extract LAT data files from the *FERMI Science Support Center* (FSSC) databases. In order to analyze LAT data, you will need:
 
@@ -88,7 +88,7 @@ If you want more information about the files you just downloaded, you can check 
 In the Day 2 hand-on session, we will show you how to create a *flux spectrum (SED)*, *flux lightcurve* and *flux image*, where `flux = counts / exposure` and `exposure = (effective area) x (observation time)` and in addition the exposure, the spatial resolution--called point spread function (PSF)--and energy resolution have all been taken into account.
 
 
-# Obtain LAT data 
+# <a name=“download”></a>Obtain LAT data 
 
 First, you need to decide what kind of source you want to analyze, i.e. which part of the sky are your LAT photons coming from? In this tutorial, we will give three options of sources. Pick the one you prefer:
 
