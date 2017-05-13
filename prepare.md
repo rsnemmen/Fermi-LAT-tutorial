@@ -143,6 +143,8 @@ Once the download is finished, there may be multiple events files (`*_PH##.fits`
 
 # A first inspection of Fermi LAT photon files
 
+[comment]: <> (goal: inspect files, get an idea of their structure, learn how to use pyfits for this purpose)
+
 Event files like are FITS files. For historical reasons, [FITS](https://en.wikipedia.org/wiki/FITS) is the standard data format in astronomy for arrays (e.g. 2D images) and tables (e.g. source catalogs or event lists). A FITS file consists of header-data units (HDUs), where each HDU is an array or table. For historic reasons the first HDU (a.k.a. primary HDU) has to be an array, so in FITS files that only contain tabular data the primary HDU will be a dummy, empty HDU.
 
 Let’s use a few different tools to explore the content of the events file for your selected source. We will first use `IPython` and the module `pyfits` to list the content of FITS files. [IPython](https://ipython.org) is a very popular environment for interactive scientific analysis. 
@@ -150,24 +152,31 @@ Let’s use a few different tools to explore the content of the events file for 
 First open a terminal:
 ![](./figures/open_terminal.png)
 
-Issue the command `ipython` to open the IPython environment. You should see this:
+Issue the command
+
+    ipython --pylab
+
+to open the IPython environment. The `--pylab` argument makes sure that convenient plotting modules are loaded on startup. You should see this:
 ![](./figures/ipython.png)
 
+Let’s load the `pyfits` module to be able to handle FITS files: enter the command `import pyfits` in IPython. Now let’s get a summary of the FITS file structure:
 
-Giving a filename and the print option H to list a 1-line summary of the HDUs to ftlist we get:
+    hdulist = pyfits.open('[SOURCE]_PH00.fits')
+    hdulist.info()
 
-$ ftlist L1309081333300B976F4377_PH00.fits H
+where you replace the filename with the one corresponding to your favorite source. Replace `[SOURCE]` above with either `vela`, `3c454` or `gc`. You should get something looking like the following output:
+![](./figures/pyfits_info.png)
 
-        Name               Type       Dimensions
-        ----               ----       ----------
-HDU 1   Primary Array      Null Array
-HDU 2   EVENTS             BinTable    22 cols x 1065513 rows
-HDU 3   GTI                BinTable     2 cols x 1790 rows
-So this event file contains an EVENTS table with 1065513 events and a GTI (good time interval) table with 1790 GTIs. GTIs are needed to compute exposure. Exposure is needed to compute the flux of sources.
+So this event file contains an `EVENTS` table with 285902 events and a `GTI` (good time interval) table with 1702 GTIs. GTIs are needed to compute exposure. Exposure is needed to compute the flux of sources.
 
-To list the names and units of the columns in the EVENTS and GTI table use the C print option with ftlist:
+To list the names and units of the columns in the EVENTS and GTI table use 
 
-goal: inspect files, get an idea of their structure, learn how to use pyfits for this purpose
+
+
+
+
+
+
 
 put things from http://fermi-hero.readthedocs.io/en/latest/getting_started/first_look.html but without making the plot
 
