@@ -11,7 +11,6 @@ To participate in the tutorial we recommend that you bring your laptop. Your lap
 
 All the analysis software and data files required for this hands-on activity are already installed in a ready-to-use, self-contained [virtual machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine). The VM runs on Windows, Linux and MacOS and is based on the *Scientific Linux distribution*. It contains the `Fermi ScienceTools`, `Enrico` and `ds9`.
 
-
 In order to run the VM, you will need to [download and install the VirtualBox binaries](https://www.virtualbox.org/wiki/Downloads) appropriate for your OS. 
 
 ## Download links
@@ -37,6 +36,13 @@ We recommend that you start downloading early our virtual machine, given the lar
 
 ![](./figures/welcome_screen.png "VM after booting")
 
+## Python and Linux background
+
+This hands-on activity will make considerable use of Python and Linux. If you are not familiar with the Python programming language or Linux, we recommend that you study them *before* the hands-on session. Some suggested  preparatory material on the basics of Python as a scientific computing language or Linux: 
+
+- [Lectures on scientific computing with Python](https://github.com/jrjohansson/scientific-python-lectures)
+- [UNIX tutorial for beginners](http://www.ee.surrey.ac.uk/Teaching/Unix/)
+
 
 # Tutorials
 
@@ -44,7 +50,7 @@ We recommend that you start downloading early our virtual machine, given the lar
 
 - 4:30-5:00: [Introduction, overview of activities and tools (slides)](./day01-intro_slides.pdf)
 - 5:00-5:30: [Obtaining and preparing LAT data for your favorite source](./prepare.md)
-- 5:30-6:30: [Exploring and inspecting LAT data: Plotting the counts map](./explore.md)
+- 5:30-6:30: [Exploring LAT data: Plotting the counts map](./explore.md)
 
 ## Day two
 
@@ -55,8 +61,8 @@ We recommend that you start downloading early our virtual machine, given the lar
 
 # Acknowledgements
 
-- Luis Ricardo Manrique, Marco Antonio dos Santos: for general IT help and installing the VM on all flash drives and lab desktop machines
-- Fabio Cafardo, Raniere Menezes: for general brainstorming, helping with preparation of the tutorials and testing the VM
+- Luis Ricardo Manrique, Marco Antonio dos Santos: for general IT help, installing the VM on all flash drives and lab desktop machines, testing the VM
+- Fabio Cafardo, Raniere Menezes: for general brainstorming and helping with preparation of the tutorials
 - LAT Collaboration, particularly Jeremy Perkins: for inspiration on the activities (very helpful [analysis threads](https://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/)) and the idea of the VM
 - Christoph Deil and Victor Zabalza for [their nice tutorial](http://fermi-hero.readthedocs.io/en/latest/index.html#) which inspired parts of this one
 

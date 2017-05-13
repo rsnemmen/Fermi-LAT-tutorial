@@ -143,7 +143,7 @@ Once the download is finished, there may be multiple events files (`*_PH##.fits`
 
 # A first inspection of Fermi LAT photon files
 
-[comment]: <> (goal: inspect files, get an idea of their structure, learn how to use pyfits for this purpose)
+[comment]: <> (goal: inspect files, get an idea of their structure, learn how to use pyfits for this purpose; inspiration: http://fermi-hero.readthedocs.io/en/latest/getting_started/first_look.html)
 
 Event files like are FITS files. For historical reasons, [FITS](https://en.wikipedia.org/wiki/FITS) is the standard data format in astronomy for arrays (e.g. 2D images) and tables (e.g. source catalogs or event lists). A FITS file consists of header-data units (HDUs), where each HDU is an array or table. For historic reasons the first HDU (a.k.a. primary HDU) has to be an array, so in FITS files that only contain tabular data the primary HDU will be a dummy, empty HDU.
 
@@ -171,17 +171,48 @@ So this event file contains an `EVENTS` table with 285902 events and a `GTI` (go
 
 To list the names and units of the columns in the EVENTS and GTI table use 
 
+```python
+hdulist[1].columns # shows info for EVENTS table
+hdulist[2].columns # shows info for GTI table
+``` 
+
+If you want to see only the names of the columns in the EVENTS table, you can use:
+
+    hdulist[1].columns.names
+
+Now, let’s have a look at the actual data stored in some of the columns of the EVENTS table. If you want to retrieve the energies of all events detected by LAT for your source:
+
+```python
+events=hdulist[1].data
+events['ENERGY']
+```
+
+Using this notation, you can easily inspect all the data for your source, making use of the power of `numpy` arrays.
+
+## Exercise 1
+
+Write code that prints out the energies, RA, DEC and time stamps of all events detected by LAT for your source in the following format: 
+
+```
+            ENERGY             RA            DEC                    TIME
+               MeV            deg            deg                       s
+  1        398.907        94.0848        5.88669        378713295.231454
+  2        425.700        91.8646        7.99151        378724463.542101
+  3        262.569        93.0315        4.90930        378724578.466829
+…
+```  
+
+Try to solve the problem on your own. Only by working on it you will really learn. See [`prepare-solutions`](./prepare-solutions.md#1) for one possible solution.
+
+
+This is one simple way of looping through them:
 
 
 
 
 
+close the file
 
-
-put things from http://fermi-hero.readthedocs.io/en/latest/getting_started/first_look.html but without making the plot
-
-maybe use pyfits and python?
-leave exercise?
 data summaries
 http://fermi-hero.readthedocs.io/en/latest/getting_started/python.html
 
