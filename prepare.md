@@ -107,7 +107,7 @@ Once you made your choices for selecting the photons, normally you would go to g
 We describe below the step-by-step instructions for downloading the data files from the server. You do not need to do this for the activity.
 
 
-## Instructions for downloading the data (not needed for hands-on)
+## Instructions for downloading the data (only for reference, not needed for hands-on)
 
 Now we will learn how to extract and download the LAT data from the FSSC server. To select all photons within a circular region around the source:
 
@@ -143,7 +143,29 @@ Once the download is finished, there may be multiple events files (`*_PH##.fits`
 
 # A first inspection of Fermi LAT photon files
 
+Event files like are FITS files. For historical reasons, [FITS](https://en.wikipedia.org/wiki/FITS) is the standard data format in astronomy for arrays (e.g. 2D images) and tables (e.g. source catalogs or event lists). A FITS file consists of header-data units (HDUs), where each HDU is an array or table. For historic reasons the first HDU (a.k.a. primary HDU) has to be an array, so in FITS files that only contain tabular data the primary HDU will be a dummy, empty HDU.
 
+Let’s use a few different tools to explore the content of the events file for your selected source. We will first use `IPython` and the module `pyfits` to list the content of FITS files. [IPython](https://ipython.org) is a very popular environment for interactive scientific analysis. 
+
+First open a terminal:
+![](./figures/open_terminal.png)
+
+Issue the command `ipython` to open the IPython environment. You should see this:
+![](./figures/ipython.png)
+
+
+Giving a filename and the print option H to list a 1-line summary of the HDUs to ftlist we get:
+
+$ ftlist L1309081333300B976F4377_PH00.fits H
+
+        Name               Type       Dimensions
+        ----               ----       ----------
+HDU 1   Primary Array      Null Array
+HDU 2   EVENTS             BinTable    22 cols x 1065513 rows
+HDU 3   GTI                BinTable     2 cols x 1790 rows
+So this event file contains an EVENTS table with 1065513 events and a GTI (good time interval) table with 1790 GTIs. GTIs are needed to compute exposure. Exposure is needed to compute the flux of sources.
+
+To list the names and units of the columns in the EVENTS and GTI table use the C print option with ftlist:
 
 goal: inspect files, get an idea of their structure, learn how to use pyfits for this purpose
 

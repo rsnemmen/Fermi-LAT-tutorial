@@ -64,6 +64,7 @@ We recommend that you start downloading early our virtual machine, given the lar
 
 - [ ] GRB tutorial
 - [ ] reproducing the tentative dark matter line from the Galactic Center
+- [ ] upload data files required for activity on figshare
 
 # Contact 
 
