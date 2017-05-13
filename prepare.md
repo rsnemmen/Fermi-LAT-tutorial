@@ -4,9 +4,9 @@ Obtaining and preparing LAT data for your favorite source
 This hands-on lesson is structured in the following sections:
 
 1. [Software that will be used](#software)
-2. [Types of Fermi LAT data](#Types-of-Fermi-LAT-Data-files)
+2. [Types of Fermi LAT data](#types-of-fermi-lat-data-files)
 3. [How to obtain (download) the data](#obtain-lat-data)
-4. [First inspection of LAT photon files](#A-first-inspection-of-Fermi-LAT-photon-files)
+4. [First inspection of LAT photon files](#a-first-inspection-of-fermi-lat-photon-files)
 4. [How to prepare the data](#data-preparation)
 
 # Software
