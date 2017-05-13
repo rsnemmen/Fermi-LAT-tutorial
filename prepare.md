@@ -189,9 +189,9 @@ events['ENERGY']
 
 Using this notation, you can easily inspect all the data for your source, making use of the power of `numpy` arrays.
 
-## Exercise 1
+## Exercise 1: Printing out some variables
 
-Write code that prints out the energies, RA, DEC and time stamps of all events detected by LAT for your source in the following format: 
+Write code that prints out the energies, RA, DEC and time stamps of all events detected by LAT for your source in the following format (or similar): 
 
 ```
             ENERGY             RA            DEC                    TIME
@@ -202,24 +202,33 @@ Write code that prints out the energies, RA, DEC and time stamps of all events d
 …
 ```  
 
-Try to solve the problem on your own. Only by working on it you will really learn. See [`prepare-solutions`](./prepare-solutions.md#1) for one possible solution.
+Try to solve the problem on your own. Only by working on it you will really learn. See [`prepare-solutions`](./prepare-solutions.md#exercise-1) for one possible solution.
+
+- - - 
+
+## Exercise 2: Plot the photon zenith angle
+
+Make a histogram of the distribution of zenith angles for the photons in `EVENTS` observed for your region. 
+
+Again, try to solve the problem on your own. Solution in [`prepare-solutions`](./prepare-solutions.md#exercise-2).
 
 
-This is one simple way of looping through them:
-
+- - - 
 
 
 
 
 close the file
 
-data summaries
-http://fermi-hero.readthedocs.io/en/latest/getting_started/python.html
 
 
 
 
 # Data Preparation
+
+data summaries
+http://fermi-hero.readthedocs.io/en/latest/getting_started/python.html
+
 
 Goal of data preparation.
 Why is it needed?
