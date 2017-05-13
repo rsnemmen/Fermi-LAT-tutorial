@@ -8,7 +8,16 @@ count maps for one of the following regions:
 
 # Exploring The Data
 
-Making a Counts Map With *gtbin*
+## quick inspection of spectra, LC
+
+http://fermi-hero.readthedocs.io/en/latest/getting_started/explore_events.html
+
+energy distribution
+
+time series
+
+- - - 
+
 
 Next, we create a Counts Map of the ROI, summed over photon energies, in order to identify candidate sources and to ensure that the field looks sensible as a simple sanity check.
 
@@ -36,7 +45,13 @@ gtbin: WARNING: No spacecraft file: EXPOSURE keyword will be set equal to ontime
 
 We chose an ROI of 12 degrees, corresponding to 24 degrees in diameter. Since we want a pixel size of 0.08 degrees/pixel, then we must select 24/0.08=300 pixels for the size of the x and y axes. 
 
-## Viewing the Counts Map with *ds9*
+## Plot an image: The counts Map
+
+Making a Counts Map With *gtbin*
+python way
+ds9 way
+
+- - - 
 
 In this section, in addition to the Fermi Science Tools, you will also be using a software called *ds9*, which is a FITS File Viewer.
 

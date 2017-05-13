@@ -55,7 +55,7 @@ We recommend that you start downloading early our virtual machine, given the lar
 
 # Acknowledgements
 
-- Luis Ricardo Manrique, Marco Antonio dos Santos: for general IT help and installing the VM on all the lab desktop machines
+- Luis Ricardo Manrique, Marco Antonio dos Santos: for general IT help and installing the VM on all flash drives and lab desktop machines
 - Fabio Cafardo, Raniere Menezes: for general brainstorming, helping with preparation of the tutorials and testing the VM
 - LAT Collaboration, particularly Jeremy Perkins: for inspiration on the activities (very helpful [analysis threads](https://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/)) and the idea of the VM
 - Christoph Deil and Victor Zabalza for [their nice tutorial](http://fermi-hero.readthedocs.io/en/latest/index.html#) which inspired parts of this one

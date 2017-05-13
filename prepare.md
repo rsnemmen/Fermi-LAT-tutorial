@@ -1,11 +1,12 @@
 Obtaining and preparing LAT data for your favorite source
 =====================================================
 
-This hands-on lesson is structured in the following way:
+This hands-on lesson is structured in the following sections:
 
-1. Software: describes the software that will be used
+1. Software that will be used
 2. Types of Fermi LAT data
 3. How to obtain (download) the data
+4. First inspection of LAT photon files
 4. How to prepare the data
 
 # Software
@@ -14,6 +15,7 @@ The following software will be needed for this hands-on activity:
 
 - `Fermi ScienceTools`
 - `ds9`
+- `topcat`
 - `Enrico`
 
 **Important:** All the analysis software and data files required for this hands-on activity are already installed in a ready-to-use, self-contained [virtual machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine). The VM runs on Windows, Linux and MacOS. *Please do not download large files during the tutorial or the WIFI network will overload*. We will also distribute the software and data you need via USB sticks, if you did not download them before the school.
@@ -31,6 +33,10 @@ The [Fermi Science Support Center web pages](https://fermi.gsfc.nasa.gov/ssc/) c
 ## `ds9`
 
 [SAOImage DS9](http://ds9.si.edu/site/Home.html) is one of the best viewers for astronomical 2D images and 3D cubes.
+
+## `TOPCAT`
+
+[TOPCAT](http://www.star.bris.ac.uk/~mbt/topcat/)—also known as “Tool for OPerations on Catalogues And Tables”—is a useful GUI for interacting and exploring astronomical catalogues and tables. 
 
 ## `Enrico`
 
@@ -73,7 +79,7 @@ The most important parameters in the events file are:
 
 All these files are pre-installed in the VM.
 
-In this tutorial we will have a quick look at the Fermi LAT dataset by binning the events into histograms:
+If you want more information about the files you just downloaded, you can check out [this website](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data/LAT_Data_Columns.html). In this tutorial we will have a quick look at the Fermi LAT dataset by binning the events into histograms:
 
 - A 2-dimensional (L, B) histogram is called a counts image.
 - A 1-dimensional ENERGY histogram is called a counts spectrum.
@@ -123,44 +129,42 @@ Now we will learn how to extract and download the LAT data from the FSSC server.
 
 ![](./figures/query_submitted.png)
 
+We suggest that you capture the information reported on the query page in a text file accompanying your data. While it can be retrieved through other means, having the information from your query easily accessible may ease certain portions of the analysis.
+
 When you go to this new webpage--'LAT Data Query Results'--you may be told that the query is not yet complete. This webpage will show you a link to where the results of your query can be found. When the query is complete, the data file list will include links to the files themselves.
 
 ![](./figures/query_results.png)
 
-xxxxxxx
-4. Now we have the spacecraft (pointing and livetime history) file and events data file. There may be multiple events files (_PH##), but there should be only a single spacecraft (_SC##) file. We’ll have to save them in order to use the Fermi Science Tools. Since they are not installed in the computers we are using, we will access another computer remotely.
+4. Download the spacecraft (pointing and livetime history) file and events data file to your working directory. The results page include convenient `wget` commands that you can copy and paste in the terminal window to download all the FITS files. 
 
-5. Open the terminal in your computer, by pressing crtl + alt + t. Then, type:
-
-<table>
-  <tr>
-    <td>>> ssh infieri@10.180.1.194 -X
->> infieri@10.180.1.194's password: fermiLAT</td>
-  </tr>
-</table>
+Once the download is finished, there may be multiple events files (`*_PH##.fits`), but there should be only a single spacecraft (`*_SC##.fits`) file. We are done with retrieving the data files!
 
 
-	Now you are accessing a computer with all the tools necessary in this tutorial.
 
-6. Each one will create a directory in this machine. You can use your own name as the name of your directory:
-
-<table>
-  <tr>
-    <td>>> mkdir YOURNAME
->> cd YOURNAME</td>
-  </tr>
-</table>
+# A first inspection of Fermi LAT photon files
 
 
-7. Now you can download via wget the files generated on step 4 above. You just need to use the commands available in the bottom of the webpage.
 
-If you want to know the details about the files you just downloaded, you can check:
+goal: inspect files, get an idea of their structure, learn how to use pyfits for this purpose
 
-[https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data/LAT_Data_Columns.html](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data/LAT_Data_Columns.html)
+put things from http://fermi-hero.readthedocs.io/en/latest/getting_started/first_look.html but without making the plot
+
+maybe use pyfits and python?
+leave exercise?
+data summaries
+http://fermi-hero.readthedocs.io/en/latest/getting_started/python.html
+
 
 
 
 # Data Preparation
+
+Goal of data preparation.
+Why is it needed?
+http://fermi-hero.readthedocs.io/en/latest/getting_started/prepare_data.html
+
+compare data with and without zenith cut, removing Earth gamma-rays
+
 
 Data preparation consists of two steps:
 
@@ -252,7 +256,6 @@ The initial list of GTI's are the times that the LAT was collecting data over th
 Notes:
 
 * Your object will most likely not be in the field of view during the entire time that the LAT was taking data.
-
 * Additional data cuts made with *gtmktime* will update the GTI's based on the cuts specified in both *gtmktime* and *gtselect*.
 
 *gtmktime* is used to update the GTI extension and make cuts based on spacecraft parameters contained in the spacecraft (pointing and livetime history) file. It reads the spacecraft file and, based on the filter expression and specified cuts, creates a set of GTIs. These are then combined (logical and) with the existing GTIs in the Event data file, and all events outside this new set of GTIs are removed from the file. New GTIs are then written to the GTI extension of the new file.
