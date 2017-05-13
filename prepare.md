@@ -204,35 +204,36 @@ Write code that prints out the energies, RA, DEC and time stamps of all events d
 
 Try to solve the problem on your own. Only by working on it you will really learn. See [`prepare-solutions`](./prepare-solutions.md#exercise-1) for one possible solution.
 
-- - - 
-
 ## Exercise 2: Plot the photon zenith angle
 
 Make a histogram of the distribution of zenith angles for the photons in `EVENTS` observed for your region. 
 
 Again, try to solve the problem on your own. Solution in [`prepare-solutions`](./prepare-solutions.md#exercise-2).
 
-
 - - - 
 
+The zenith angle histogram you plotted in the exercise above shows a broad peak in the range 0˚ to 100˚, and a narrow peak around 113˚. *Why is that narrow strong peak around 113˚?* We’ll explain the origin and relevance of this distribution in the next section on data preparation.
 
-
-
-close the file
-
-
+Now go ahead and close the FITS file: `hdulist.close()`
 
 
 
 # Data Preparation
 
-data summaries
-http://fermi-hero.readthedocs.io/en/latest/getting_started/python.html
+[comment]: <> (Goal of data preparation; Why is it needed?; http://fermi-hero.readthedocs.io/en/latest/getting_started/prepare_data.html)
 
+In the last section we made a histogram of the photon zenith angle distribution and found a broad peak in the range 0 to 100 deg and a narrow peak around 113 deg.
 
-Goal of data preparation.
-Why is it needed?
-http://fermi-hero.readthedocs.io/en/latest/getting_started/prepare_data.html
+The narrow peak at a zenith angle of ~113˚ is due to “atmospheric gamma rays” as explained in the following Figure (which also explains what the zenith angle is):
+![](./figures/earth_limb_gammas.png)
+**Figure**: Schematic of Limb gamma-ray production by cosmic ray interactions in the Earth’s atmosphere, showing the definitions of the zenith angle (θz), the spacecraft rocking angle (θr) and the incidence angle (θ). [Reference](http://adsabs.harvard.edu/abs/2013arXiv1305.5597F).
+
+We are not interested in atmospheric gamma rays, only in gamma rays from astrophysical sources. To apply selection cuts that remove the atmospheric gammas we will use the `gtselect` and `gtmktime` tools from the Fermi ScienceTools. Running these two tools also serve other purposes such as e.g. selecting an event class (see [LAT Data Selection Recommendations](https://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/data_preparation.html) for more information).
+
+We will not describe the details of what happens here ... if you are interested read the Fermi LAT Data Preparation analysis thread and follow the links given there.
+
+gtselect takes an FITS event file as input and writes a subset of events to an output FITS event file. If you have more than one input FITS event file you have to create a text file containing the names of all FITS event files you’d like to process ... one file per line.
+
 
 compare data with and without zenith cut, removing Earth gamma-rays
 
@@ -366,3 +367,9 @@ It is also especially important to apply a zenith cut for small ROIs (< 20 degre
 
 The data with all the cuts described above is provided in the file 3C279_region_filtered_gti.fits.
 
+- - - 
+
+data summaries
+http://fermi-hero.readthedocs.io/en/latest/getting_started/python.html
+
+summary of data preparation section
