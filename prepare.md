@@ -202,13 +202,13 @@ Write code that prints out the energies, RA, DEC and time stamps of all events d
 …
 ```  
 
-Try to solve the problem on your own. Only by working on it you will really learn. See [`prepare-solutions`](./prepare-solutions.md#exercise-1) for one possible solution.
+Try to solve the problem on your own. Only by working on it you will really learn. At the end of this document there is a link to one of the possible solutions.
 
 ## Exercise 2: Plot the photon zenith angle
 
 Make a histogram of the distribution of zenith angles for the photons in `EVENTS` observed for your region. 
 
-Again, try to solve the problem on your own. Solution in [`prepare-solutions`](./prepare-solutions.md#exercise-2).
+Again, try to solve the problem on your own. Solutions at the end of this document.
 
 - - - 
 
@@ -253,8 +253,8 @@ For a simple point source analysis, it is recommended that you only include even
 
 We now apply the *gtselect* tool to the data file. Run the following command in the terminal and use the following suggestions:
 
-```shell
-gtselect evclass=128 evtype=3
+```
+[fermi@localhost ~]$ gtselect evclass=128 evtype=3
 Input FT1 file[] @events.txt
 Output FT1 file[] [SOURCE]_filtered.fits
 RA for new search center (degrees) (0:360) [0] [RA for source]
@@ -273,63 +273,53 @@ The output from `gtselect` will be a single file (`[SOURCE]_filtered.fits`) cont
 
 [comment]: <> (and provides a sufficient buffer between your ROI and the Earth's limb. In the next step, `gtmktime` will remove any time period that our ROI overlaps this buffer region. While increasing the buffer (reducing zmax) may decrease the background rate from albedo gammas, it will also reduce the amount of time your ROI is completely free of the buffer zone and thus reduce the livetime on the source of interest.)
 
-In the next time, we will use the `gtmktime` tool to 
+## Time Selection with `gtmktime`
 
-## Time Selection with *gtmktime*
+You may have noticed that all of these FITS files have a `GTI` table in them besides the `EVENTS`. A *Good Time Interval* (GTI) is the time range when the data can be considered valid. The GTI table contains a list of these GTI's for the file. In other words, the sum of the entries in the GTI table of a file corresponds to the time when the data in the file is "good”: the times when the LAT was collecting data over the time range you selected. For example, the LAT does not collect data while the observatory is transiting the [Southern Atlantic Anomaly (SAA)](https://en.wikipedia.org/wiki/South_Atlantic_Anomaly), or during rare events such as software updates, spacecraft maneuvers or severe space weather.
 
-You may have noticed that all of these files have a GTI extension in them. Before we look at making selections with the *gtmktime* tool, we should probably clarify what at **Good Time Interval** (GTI) is:
+[comment]: <> (*gtmktime* is used to update the GTI extension and make cuts based on spacecraft parameters contained in the spacecraft (pointing and livetime history) file.) 
 
-Simply stated, a GTI is a time range when the data can be considered valid. The GTI extension contains a list of these GTI's for the file. Thus the sum of the entries in the GTI extension of a file corresponds to the time when the data in the file is "good".
+`gtmktime` reads the spacecraft file and, based on the filter expression and specified cuts, creates a new set of GTIs which are then written to the GTI extension of the new file.
 
-How are these interpreted for Fermi?
+Here is how we run `gtmktime` on our source. Enter the command `gtmktime` in the terminal and use the following selections:
 
-The initial list of GTI's are the times that the LAT was collecting data over the time range you selected. The LAT does not collect data while the observatory is transiting the Southern Atlantic Anomaly (SAA), or during rare events such as software updates or spacecraft maneuvers.
-
-Notes:
-
-* Your object will most likely not be in the field of view during the entire time that the LAT was taking data.
-* Additional data cuts made with *gtmktime* will update the GTI's based on the cuts specified in both *gtmktime* and *gtselect*.
-
-*gtmktime* is used to update the GTI extension and make cuts based on spacecraft parameters contained in the spacecraft (pointing and livetime history) file. It reads the spacecraft file and, based on the filter expression and specified cuts, creates a set of GTIs. These are then combined (logical and) with the existing GTIs in the Event data file, and all events outside this new set of GTIs are removed from the file. New GTIs are then written to the GTI extension of the new file.
-
-*gtmktime* also provides the ability to exclude periods when some event has negatively affected the quality of the LAT data. To do this, we select GTIs by using a logical filter for any of the quantities in the spacecraft file. Some possible quantities for filtering data are:
-
-* DATA_QUAL - quality flag set by the LAT instrument team (1 = ok, 2 = waiting review, 3 = good with bad parts, 0 = bad)
-
-* LAT_CONFIG - instrument configuration (0 = not recommended for analysis, 1 = science configuration)
-
-The current *gtmktime* filter expression recommended by the LAT team is: (DATA_QUAL>0)&&(LAT_CONFIG==1).
-
-It is useful to rename the spacecraft file to something easier. Here, we have renamed it to spacecraft.fits (you will need to know the original name of the spacecraft file, try using *ls* to see you files names):
-
-<table>
-  <tr>
-    <td>>> mv OriginalName_SC00.fits spacecraft.fits</td>
-  </tr>
-</table>
-
-
-Here is an example of running *gtmktime* on the 3C 279 filtered events file. 
-
-<table>
-  <tr>
-    <td>>> gtmktime
+```
+[fermi@localhost ~]$ gtmktime
 Spacecraft data file[] spacecraft.fits
 Filter expression[] (DATA_QUAL>0)&&(LAT_CONFIG==1)
 Apply ROI-based zenith angle cut[] no
-Event data file[] 3C279_region_filtered.fits
-Output event file name[] 3C279_region_filtered_gti.fits</td>
-  </tr>
-</table>
+Event data file[] [SOURCE]_filtered.fits
+Output event file name[] [SOURCE]_filtered_gti.fits
+```
 
+Here is a quick explanation of the parameters used above when filtering data:
 
-It is also especially important to apply a zenith cut for small ROIs (< 20 degrees), as this brings your source of interest close to the Earth's limb.There are two different methods for handling the complex cut on zenith angle. One method involves excluding time intervals where the buffer zone defined by the zenith cut intersects the ROI from the list of GTIs. In order to do that, you should answer "yes" at the prompt "Apply ROI-based zenith angle cut[]". You can, instead, apply the zenith cut to the livetime calculation latter in the analyses if necessary (we will not get to this point in this tutorial). This is the method that is currently recommended by the LAT team, and is the method we will use most commonly in these analysis threads. To do this, answer "no" at the *gtmktime* prompt “Apply ROI-based zenith angle cut[]”.
+* `DATA_QUAL`: quality flag set by the LAT instrument team (1 = ok, 2 = waiting review, 3 = good with bad parts, 0 = bad)
+* `LAT_CONFIG`: instrument configuration (0 = not recommended for analysis, 1 = science configuration)
 
-The data with all the cuts described above is provided in the file 3C279_region_filtered_gti.fits.
+The current `gtmktime` filter expression recommended by the LAT team is: `(DATA_QUAL>0)&&(LAT_CONFIG==1)`.
+
+The data with all the cuts described above will be created in the file `[SOURCE]_filtered_gti.fits`.
+
+Some notes: 
+
+- For convenience, we renamed the spacecraft file to `spacecraft.fits`. The spacecraft file for all sources in this hands-on activity are the same since they cover the same time period.
+- The Science Tools use the GTI's when calculating exposure. If these have not been properly updated, the exposure correction made during science analysis may be incorrect.
+- It is important to apply a zenith cut for small ROIs (<20˚) as this brings your source of interest close to the [Earth's limb](https://earthobservatory.nasa.gov/IOTD//view.php?id=3338). Here, we apply the zenith cut to the livetime calculation later in the analyses if necessary—this is the method that is currently recommended by the LAT team. To do this, we answer "no" at the `gtmktime` prompt “Apply ROI-based zenith angle cut[]”. We will not get to this point in this tutorial.
+- Every time you specify an additional cut on time, ROI, zenith angle, event class, or event type using `gtselect`, you must run `gtmktime` to reevaluate the GTI selection.
+
+## Exercise 3: Inspecting what `gtselect` and `gtmktime` did to the data
+
+Similarly to what we did in [exercise 2](#exercise-2), plot the histogram of zenith angles for the events in FITS file generated after running `gtmktime`. What do you notice in comparison to the histogram you plotted in exercise 2?
+
+## Exercise 4: number of events before and after
+
+[comment]: <> (inspired on http://fermi-hero.readthedocs.io/en/latest/getting_started/python.html) 
+
+Compute the total number of events detected by LAT before the data cuts with `gtselect` and `gtmktime` with the number of events after those cuts. Why do you think there is a difference?
 
 - - - 
 
-data summaries
-http://fermi-hero.readthedocs.io/en/latest/getting_started/python.html
+Now we move on to [exploring the data further and plotting images](./explore.md).
 
-summary of data preparation section
+[Solutions to exercises](./prepare-solutions.md).
