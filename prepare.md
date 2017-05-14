@@ -34,9 +34,7 @@ The [Fermi Science Support Center web pages](https://fermi.gsfc.nasa.gov/ssc/) c
 
 [SAOImage DS9](http://ds9.si.edu/site/Home.html) is one of the best viewers for astronomical 2D images and 3D cubes.
 
-## `TOPCAT`
-
-[TOPCAT](http://www.star.bris.ac.uk/~mbt/topcat/)—also known as “Tool for OPerations on Catalogues And Tables”—is a useful GUI for interacting and exploring astronomical catalogues and tables. 
+[comment]: <> (TOPCAT also known as “Tool for OPerations on Catalogues And Tables”—is a useful GUI for interacting and exploring astronomical catalogues and tables. )
 
 ## `Enrico`
 
@@ -52,9 +50,9 @@ The [Fermi Science Support Center web pages](https://fermi.gsfc.nasa.gov/ssc/) c
 
 An alternative set of Python wrappers is [FermiPy](http://fermipy.readthedocs.io/en/latest/) which provides similar functionality and convenience as `Enrico`. 
 
-## If you are installing the software on your own Linux or MacOS system
+## If you want to install the analysis tools on your own Linux or MacOS system instead of using the VM
 
-Here are some directions for those that would like to install the software directly in their OS instead of using the pre-packaged VM. 
+Here are some directions for those that would like to install the analysis software directly in their OS instead of using our pre-packaged VM. 
 
 In order to get the ScienceTools and Enrico working together, you need to setup some environment variables after installing the software. If you are curious, please have a look at the `.bashrc` init file located in your home directory in the VM.
 
@@ -102,9 +100,21 @@ Once you select your favorite source for inspection which will define the sky co
 - Date range (MET): 441763203, 457401604. LAT uses a very special time unit called the [Mission Elapsed Time (MET)](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data/Time_in_ScienceTools.html) which is the number of seconds since midnight at the beginning of January 1, 2001, in the UTC system. The range given here corresponds to the first semester of 2015.
 - Energy range (MeV): 100, 300000. This is the normal energy range used in LAT analysis.
 
-Once you made your choices for selecting the photons, normally you would go to go to the NASA FSSC server website, input the selection criteria and download the files. However, in order to save time and bandwidth, all the necessary files have already been downloaded and are available in the folder `sources`. *You do not need to download the data for this activity.*
+Once you made your choices for selecting the photons, normally you would go to go to the NASA FSSC server website, input the selection criteria and download the files. However, in order to save time and bandwidth, all the necessary files have already been downloaded and are available in the folder `sources`. 
 
-We describe below the step-by-step instructions for downloading the data files from the server. You do not need to do this for the activity.
+
+## Data files available in the VM
+
+The directory `~/sources` contains the following following files that will be required in the activities that follow:
+
+- `3c454*.fits`: events files for the blazar 3C 454.3
+- `vela*.fits`: events files for the Vela pulsar
+- `gc*.fits`: events files for the Galactic Center
+- `spacecraft.fit`: spacecraft file valid for all the events above, since they were extracted for the same time period
+
+These data were already pre-downloaded from the NASA FSSC server using the selection criteria outlined in the previous section. *You do not need to download the data for this activity.*
+
+In any case, we describe below the step-by-step instructions for downloading the data files from the server. You do not need to do this for the activity.
 
 
 ## Instructions for downloading the data (only for reference, not needed for hands-on)

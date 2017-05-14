@@ -50,6 +50,7 @@ Assuming you ran the previous exercises in the same IPython environment, we will
 # we read both events files
 before0 = pyfits.open('[SOURCE]_PH00.fits')
 before1 = pyfits.open('[SOURCE]_PH01.fits')
+
 # total number of events summing from both events files
 nbefore=before0[1].data['ENERGY'].size+before1[1].data['ENERGY'].size
 print("Number of events before the cut",nbefore)
@@ -60,4 +61,6 @@ nafter=after[1].data['ENERGY'].size
 print("Number of events after the cut",nafter)
 ```
 
-Note that we have way less counts now than before performing the data preparation. The reason is that  we considered only events which have good quality—i.e. high probability of being astrophysical photons (event class and event type selection). Most importantly, we also removed the Earth limb photons and considered only photons with appropriate GTI values.
+We have way less counts now than before performing the data preparation. The reason is that  we considered only events which have good quality—i.e. high probability of being astrophysical photons (event class and event type selection). Most importantly, we also removed the Earth limb photons and considered only photons with appropriate GTI values.
+
+Note that you could also have anticipated the answer to this exercise by simply inspecting the histogram generated in exercise 3. 
