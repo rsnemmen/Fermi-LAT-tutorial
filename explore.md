@@ -67,7 +67,7 @@ SCALE => SQRT
 COLOR => B
 ZOOM => FIT
 
-you should get something like this:
+you should get something like this (in the case of the GC):
 ![](./figures/ds9.png)
 
 
