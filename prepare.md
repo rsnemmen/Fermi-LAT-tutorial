@@ -174,7 +174,7 @@ Let’s load the `pyfits` module to be able to handle FITS files: enter the comm
     hdulist = pyfits.open('[SOURCE]_PH00.fits')
     hdulist.info()
 
-where you replace the filename with the one corresponding to your favorite source. Replace `[SOURCE]` above with either `vela`, `3c454` or `gc`. You should get something looking like the following output:
+where you replace the filename with the one corresponding to your favorite source. Replace `[SOURCE]` above with either [`vela`, `3c454` or `gc`](#data-files-available-in-the-vm). You should get something looking like the following output:
 ![](./figures/pyfits_info.png)
 
 So this event file contains an `EVENTS` table with 285902 events and a `GTI` (good time interval) table with 1702 GTIs. GTIs are needed to compute exposure. Exposure is needed to compute the flux of sources.
@@ -296,7 +296,7 @@ Here is how we run `gtmktime` on our source. Enter the command `gtmktime` in the
 ```
 [fermi@localhost ~]$ gtmktime
 Spacecraft data file[] spacecraft.fits
-Filter expression[] (DATA_QUAL>0)&&(LAT_CONFIG==1)
+Filter expression[] (DATA_QUAL>0) && (LAT_CONFIG==1) && ABS(ROCK_ANGLE)<52
 Apply ROI-based zenith angle cut[] no
 Event data file[] [SOURCE]_filtered.fits
 Output event file name[] [SOURCE]_filtered_gti.fits

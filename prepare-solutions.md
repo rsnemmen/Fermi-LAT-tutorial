@@ -38,9 +38,13 @@ hist(eventscut['ZENITH_ANGLE'],100)
 xlabel('Zenith angle (degrees)')
 ```
 
-![](./figures/plot_zenith_angle_gtmktime.png)
+This is the result showing the histogram of zenith angles after the cut:
+![](./figures/plot_zenith_angle_cut.png)
 
-When comparing this histogram with the one generated in the previous exercise, notice the impact of the zenith angle cut.
+Here is the comparison between the histograms before and after the cut:
+![](./figures/plot_zenith_angle_both.png)
+
+When comparing this histogram with the one generated in the previous exercise, notice the impact of the zenith angle cut. Also, the number of events after the cut is decreased. We talk more about this in the next exercise.
 
 ## Exercise 4
 
