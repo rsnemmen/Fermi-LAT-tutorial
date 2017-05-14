@@ -1,11 +1,5 @@
 
 
-prepare README with step-by-step instructions
-count maps for one of the following regions:
-* pulsar
-* blazar
-* GC
-
 # Exploring The Data
 
 ## quick inspection of spectra, LC
@@ -42,7 +36,7 @@ gtbin: WARNING: No spacecraft file: EXPOSURE keyword will be set equal to ontime
   </tr>
 </table>
 
-
+UPDATE THIS WITH THE NEW ROI
 We chose an ROI of 12 degrees, corresponding to 24 degrees in diameter. Since we want a pixel size of 0.08 degrees/pixel, then we must select 24/0.08=300 pixels for the size of the x and y axes. 
 
 ## Plot an image: The counts Map
@@ -67,6 +61,19 @@ In this section, in addition to the Fermi Science Tools, you will also be using 
 You can see several strong sources and a number of weaker sources in the map.
 
 It is important to inspect your data prior to proceeding to verify that the contents are as you expect. A malformed data query or improper data selection can generate a non-circular region, or a file with zero events. By inspecting your data to analysis, you have an opportunity to detect such issues early in the analysis.
+
+IMPROVING THE IMAGE VISUALIZATION
+SCALE => SQRT
+COLOR => B
+ZOOM => FIT
+
+you should get something like this:
+![](./figures/ds9.png)
+
+
+what is the source in the lower right corner of the image?
+
+play around
 
 ## Viewing the Counts Map with *python* (if necessary)
 
