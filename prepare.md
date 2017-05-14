@@ -259,7 +259,7 @@ where you should replace `[SOURCE]` with the name corresponding to your selected
 
 For a simple point source analysis, it is recommended that you only include events with a high probability of being photons. This cut is performed by selecting "source" class events with the the `gtselect` tool by including the hidden parameter `evclass` on the command line. For LAT [Pass 8 data](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Pass8_usage.html), “source” events are specified as event class 128 (the default value).
 
-[comment]: <> (Additionally, in Pass 8 you can supply the hidden parameter `evtype` (event type) which is a sub-selection on `evclass`. For a simple analysis, we wish to include all front+back converting events within all PSF and Energy subclasses. This is specified as evtype 3 (the default value).)
+[comment]: <> (Additionally, in Pass 8 you can supply the hidden parameter `evtype`—event type—which is a sub-selection on `evclass`. For a simple analysis, we wish to include all front+back converting events within all PSF and Energy subclasses. This is specified as evtype 3—the default value.)
 
 We now apply the *gtselect* tool to the data file. Run the following command in the terminal and use the following suggestions:
 
@@ -281,13 +281,13 @@ where, again, replace `[SOURCE]` in the output filename by the appropriate name 
 
 The output from `gtselect` will be a single file (`[SOURCE]_filtered.fits`) containing all events from the combined file list `events.txt` that satisfy the other specified cuts. In this step we also selected the maximum zenith angle value as suggested by the FSSC. Photons coming from the Earth limb are a strong source of background. You can minimize this effect with a zenith angle cut. The value of 90 degrees is suggested for reconstructing events above 100 MeV.  
 
-[comment]: <> (and provides a sufficient buffer between your ROI and the Earth's limb. In the next step, `gtmktime` will remove any time period that our ROI overlaps this buffer region. While increasing the buffer (reducing zmax) may decrease the background rate from albedo gammas, it will also reduce the amount of time your ROI is completely free of the buffer zone and thus reduce the livetime on the source of interest.)
+[comment]: <> (and provides a sufficient buffer between your ROI and the Earth's limb. In the next step, `gtmktime` will remove any time period that our ROI overlaps this buffer region. While increasing the buffer—reducing zmax—may decrease the background rate from albedo gammas, it will also reduce the amount of time your ROI is completely free of the buffer zone and thus reduce the livetime on the source of interest.)
 
 ## Time Selection with `gtmktime`
 
 You may have noticed that all of these FITS files have a `GTI` table in them besides the `EVENTS`. A *Good Time Interval* (GTI) is the time range when the data can be considered valid. The GTI table contains a list of these GTI's for the file. In other words, the sum of the entries in the GTI table of a file corresponds to the time when the data in the file is "good”: the times when the LAT was collecting data over the time range you selected. For example, the LAT does not collect data while the observatory is transiting the [Southern Atlantic Anomaly (SAA)](https://en.wikipedia.org/wiki/South_Atlantic_Anomaly), or during rare events such as software updates, spacecraft maneuvers or severe space weather.
 
-[comment]: <> (*gtmktime* is used to update the GTI extension and make cuts based on spacecraft parameters contained in the spacecraft (pointing and livetime history) file.) 
+[comment]: <> (*gtmktime* is used to update the GTI extension and make cuts based on spacecraft parameters contained in the spacecraft pointing and livetime history file.) 
 
 `gtmktime` reads the spacecraft file and, based on the filter expression and specified cuts, creates a new set of GTIs which are then written to the GTI extension of the new file.
 
