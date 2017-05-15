@@ -1,13 +1,18 @@
 Analysis of Fermi LAT data: Hands on session
 ==============================================
 
+- [Tutorials](#tutorials)
+- [Pre-requisites](#pre-requisites)
+- [Download VM](#download-links) and [instructions for installing](#instructions-for-installing-vm)
+- [Contact](#contact)
+
 These are the tutorials for the hands on, practical session on the analysis of *Fermi* Large Area Telescope (aka LAT) gamma-ray observations for the [São Paulo School of Advanced Science on High Energy and Plasma Astrophysics in the CTA Era](http://www.astro.iag.usp.br/~highenastro/). The goal of this activity is to get you started on the analysis of Fermi LAT data while giving you a concrete overview of the steps involved. 
 
 This activity has a total duration of 4 hours distributed in two days. Given the somewhat short duration of these sessions, we will not have time to get into the details of all the fascinating science behind the analysis. The emphasis is on “getting your hands dirty” with the data. 
 
 # Pre-requisites
 
-To participate in the tutorial we recommend that you bring your laptop. Your laptop should have at least 4GB of RAM in order to comfortably run the VM. You will need about 17 GB of free space in your computer: 5 GB for the download and 13 GB to install the VM.
+To participate in the tutorial we recommend that you bring your laptop. Your laptop should have at least 4GB of RAM in order to comfortably run the VM. You will need about 26 GB of free space in your computer: 8 GB for the download and 18 GB to install and run the VM.
 
 All the analysis software and data files required for this hands-on activity are already installed in a ready-to-use, self-contained [virtual machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine). The VM runs on Windows, Linux and MacOS and is based on the *Scientific Linux distribution*. It contains the `Fermi ScienceTools`, `Enrico` and `ds9`.
 

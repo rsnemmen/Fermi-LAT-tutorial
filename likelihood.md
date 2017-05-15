@@ -11,18 +11,25 @@ same activity as the MP school
 data extracted using the following parameters:
 ![](./figures/pg1553_query.png)
 
-10 deg radius
+15 deg radius
 
+available in directory `day02/data`
 
 # Create a configuration file
 
+open terminal
+
 ```shell
+cd day02
 mkdir spectrum
 cd spectrum
 ```
 
+Parameters below from http://fermi-hero.readthedocs.io/en/latest/spectrum/index.html#make-a-config-file
+z=0.36
+
 ```
-enrico_config analysis.conf
+enrico_config pg1553.conf
 
 ```
 
