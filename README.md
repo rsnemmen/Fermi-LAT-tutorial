@@ -1,14 +1,14 @@
 Analysis of Fermi LAT data: Hands on session
 ==============================================
 
+These are the tutorials for the hands on, practical session on the analysis of *Fermi* Large Area Telescope (aka LAT) gamma-ray observations for the [São Paulo School of Advanced Science on High Energy and Plasma Astrophysics in the CTA Era](http://www.astro.iag.usp.br/~highenastro/). The goal of this activity is to get you started on the analysis of Fermi LAT data while giving you a concrete overview of the steps involved. 
+
+This activity has a total duration of 4 hours distributed in two days. Given the somewhat short duration of these sessions, we will not have time to get into the details of all the fascinating science behind the analysis. The emphasis is on “getting your hands dirty” with the data. 
+
 - [Tutorials](#tutorials)
 - [Pre-requisites](#pre-requisites)
 - [Download VM](#download-links) and [instructions for installing](#instructions-for-installing-vm)
 - [Contact](#contact)
-
-These are the tutorials for the hands on, practical session on the analysis of *Fermi* Large Area Telescope (aka LAT) gamma-ray observations for the [São Paulo School of Advanced Science on High Energy and Plasma Astrophysics in the CTA Era](http://www.astro.iag.usp.br/~highenastro/). The goal of this activity is to get you started on the analysis of Fermi LAT data while giving you a concrete overview of the steps involved. 
-
-This activity has a total duration of 4 hours distributed in two days. Given the somewhat short duration of these sessions, we will not have time to get into the details of all the fascinating science behind the analysis. The emphasis is on “getting your hands dirty” with the data. 
 
 # Pre-requisites
 
@@ -62,14 +62,14 @@ This hands-on activity will make considerable use of Python and Linux. If you ar
 ## Day two
 
 - 4:30-5:00: [Overview of activity, basic theory of spectral modeling (slides)](./day02-intro_slides.pdf)
-- 5:00-5:30: [Spectral modeling of a blazar: Likelihood analysis](./likelihood.md)
+- 5:00-5:30: [Getting a flux: Likelihood analysis](./likelihood.md)
 - 5:30-6:30: [Creating a spectrum (SED)](./sed.md)
 - Bonus: [Producing a light-curve](./lc.md)
 
 # Acknowledgements
 
 - Luis Ricardo Manrique, Marco Antonio dos Santos: for general IT help, installing the VM on all flash drives and lab desktop machines, testing the VM
-- Fabio Cafardo, Raniere Menezes: for general brainstorming and helping with preparation of the tutorials
+- [Fabio Cafardo, Raniere Menezes](https://rodrigonemmen.com/group/group-members/): for general brainstorming and helping with preparation of the tutorials
 - LAT Collaboration, particularly Jeremy Perkins: for inspiration on the activities (very helpful [analysis threads](https://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/)) and the idea of the VM
 - Christoph Deil and Victor Zabalza for [their nice tutorial](http://fermi-hero.readthedocs.io/en/latest/index.html#) which inspired parts of this one
 

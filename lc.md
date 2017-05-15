@@ -14,7 +14,7 @@ cd ~/day02
 mkdir lc
 cd lc
 
-use `lc.conf`
+use [`lc.conf`](./lc.conf)
 note the fixed spectral index at 2.0 like Paliya
 13 bins
 
@@ -24,4 +24,10 @@ note the fixed spectral index at 2.0 like Paliya
 enrico_xml lc.conf
 
 enrico_lc lc.conf
+started 2:21
+finished 5:32
+dt = 3:10
 
+`enrico_plot_lc lc.conf`
+
+see file `3C279_LC.png`
