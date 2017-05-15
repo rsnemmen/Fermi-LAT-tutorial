@@ -1,0 +1,674 @@
+[fermi@localhost spectrum]$ enrico_sed pg1553.conf 
+Plotter is MatPlotlib
+# ************************************************************
+# *** SUMMARY:  ***
+# ************************************************************
+Source	=	PG1553
+RA	=	238.93  degrees
+Dec	=	11.19  degrees
+Start	=	239557418.0   MET (s)
+Stop	=	334165418.0   MET (s)
+ROI	=	15.0  degrees
+E min	=	100.0  MeV
+E max	=	300000.0  MeV
+IRFs	=	CALDB
+evclass	=	128
+evtype	=	3
+Corresponding IRFs	=	('P8R2_SOURCE_V6', ['BACK', 'FRONT'])
+
+# ************************************************************
+# ***   1   gtselect --- Select data from library, coarse cut
+# ************************************************************
+time -p /home/fermi/ScienceTools-v10r0p5/x86_64-unknown-linux-gnu-libc2.17/bin/gtselect infile=events.txt outfile=/home/fermi/day02/spectrum/PG1553_spectrum_EvtCoarse.fits ra=238.93 dec=11.19 rad=15.0 tmin=239557418.0 tmax=334165418.0 emin=100.0 emax=300000.0 zmin=0.0 zmax=90.0 evclass=128 evclsmin=0 evclsmax=10 evtype="INDEF" convtype=-1 phasemin=0.0 phasemax=1.0 evtable="EVENTS" chatter=2 clobber=yes debug=no gui=no mode="ql"
+Done.
+real 2.81
+user 1.64
+sys 0.18
+
+# ************************************************************
+# ***   2   gtselect --- Select data from library, fine cut
+# ************************************************************
+time -p /home/fermi/ScienceTools-v10r0p5/x86_64-unknown-linux-gnu-libc2.17/bin/gtselect infile=/home/fermi/day02/spectrum/PG1553_spectrum_EvtCoarse.fits outfile=/home/fermi/day02/spectrum/PG1553_spectrum_Evt.fits ra=238.93 dec=11.19 rad=15.0 tmin=239557418.0 tmax=334165418.0 emin=100.0 emax=300000.0 zmin=0.0 zmax=90.0 evclass=128 evclsmin=0 evclsmax=10 evtype=3 convtype=-1 phasemin=0.0 phasemax=1.0 evtable="EVENTS" chatter=2 clobber=yes debug=no gui=no mode="ql"
+Done.
+real 1.16
+user 0.49
+sys 0.10
+
+# ************************************************************
+# ***   3   gtmktime --- Update the GTI and cut data based on ROI
+# ************************************************************
+time -p /home/fermi/ScienceTools-v10r0p5/x86_64-unknown-linux-gnu-libc2.17/bin/gtmktime scfile=/home/fermi/day02/data/pg1553_SC00.fits sctable="SC_DATA" filter="(DATA_QUAL>0)&&(LAT_CONFIG==1)" roicut=no evfile=/home/fermi/day02/spectrum/PG1553_spectrum_Evt.fits evtable="EVENTS" outfile="/home/fermi/day02/spectrum/PG1553_spectrum_Evt.fits.tmp" apply_filter=yes overwrite=no header_obstimes=yes tstart=239557418.0 tstop=334165418.0 gtifile="default" chatter=2 clobber=yes debug=no gui=no mode="ql"
+real 5.26
+user 1.44
+sys 0.32
+
+# ************************************************************
+# ***   4      gtbin --- Create a count map
+# ************************************************************
+time -p /home/fermi/ScienceTools-v10r0p5/x86_64-unknown-linux-gnu-libc2.17/bin/gtbin evfile=/home/fermi/day02/spectrum/PG1553_spectrum_Evt.fits scfile=/home/fermi/day02/data/pg1553_SC00.fits outfile=/home/fermi/day02/spectrum/PG1553_spectrum_CountMap.fits algorithm="CMAP" ebinalg="LOG" emin=100.0 emax=300000.0 ebinfile=NONE tbinalg="LIN" tbinfile=NONE nxpix=212 nypix=212 binsz=0.1 coordsys="CEL" xref=238.93 yref=11.19 axisrot=0.0 rafield="RA" decfield="DEC" proj="AIT" hpx_ordering_scheme="RING" hpx_order=3 hpx_ebin=yes evtable="EVENTS" sctable="SC_DATA" efield="ENERGY" tfield="TIME" chatter=2 clobber=yes debug=no gui=no mode="ql"
+This is gtbin version ScienceTools-v10r0p5-fssc-20150518
+real 1.01
+user 0.85
+sys 0.06
+
+# ************************************************************
+# ***   5   gtltcube --- Make live time cube
+# ************************************************************
+time -p /home/fermi/ScienceTools-v10r0p5/x86_64-unknown-linux-gnu-libc2.17/bin/gtltcube evfile="/home/fermi/day02/spectrum/PG1553_spectrum_Evt.fits" evtable="EVENTS" scfile=/home/fermi/day02/data/pg1553_SC00.fits sctable="SC_DATA" outfile=/home/fermi/day02/spectrum/PG1553_spectrum_ltCube.fits dcostheta=0.025 binsz=1.0 phibins=0 tmin=0.0 tmax=0.0 file_version="1" zmin=0.0 zmax=90.0 chatter=2 clobber=yes debug=no gui=no mode="ql"
+Working on file /home/fermi/day02/data/pg1553_SC00.fits
+.....................!
+real 1150.13
+user 1130.74
+sys 2.21
+
+# ************************************************************
+# ***   6      gtbin --- Make count map CCUBE
+# ************************************************************
+time -p /home/fermi/ScienceTools-v10r0p5/x86_64-unknown-linux-gnu-libc2.17/bin/gtbin evfile=/home/fermi/day02/spectrum/PG1553_spectrum_Evt.fits scfile=/home/fermi/day02/data/pg1553_SC00.fits outfile=/home/fermi/day02/spectrum/PG1553_spectrum_CCUBE.fits algorithm="CCUBE" ebinalg="LOG" emin=100.0 emax=300000.0 enumbins=35 ebinfile=NONE tbinalg="LIN" tstart=239557418.0 tstop=334165418.0 tbinfile=NONE nxpix=212 nypix=212 binsz=0.1 coordsys="CEL" xref=238.93 yref=11.19 axisrot=0.0 rafield="RA" decfield="DEC" proj="AIT" hpx_ordering_scheme="RING" hpx_order=3 hpx_ebin=yes evtable="EVENTS" sctable="SC_DATA" efield="ENERGY" tfield="TIME" chatter=2 clobber=yes debug=no gui=no mode="ql"
+This is gtbin version ScienceTools-v10r0p5-fssc-20150518
+real 1.21
+user 1.07
+sys 0.09
+
+# ************************************************************
+# ***   7 gtexpcube2 --- Make binned exposure cube
+# ************************************************************
+time -p /home/fermi/ScienceTools-v10r0p5/x86_64-unknown-linux-gnu-libc2.17/bin/gtexpcube2 infile=/home/fermi/day02/spectrum/PG1553_spectrum_ltCube.fits cmap=/home/fermi/day02/spectrum/PG1553_spectrum_CCUBE.fits outfile=/home/fermi/day02/spectrum/PG1553_spectrum_BinnedMap.fits irfs="CALDB" evtype="INDEF" nxpix="INDEF" nypix="INDEF" binsz="INDEF" coordsys="CEL" xref="INDEF" yref="INDEF" axisrot=0.0 proj="AIT" ebinalg="LOG" emin=100.0 emax=300000.0 enumbins=35 ebinfile="NONE" bincalc="EDGE" ignorephi=no thmax=180.0 thmin=0.0 table="EXPOSURE" chatter=2 clobber=yes debug=no mode="ql"
+Computing binned exposure map.....................!
+real 24.31
+user 22.08
+sys 0.91
+
+# ************************************************************
+# ***   8   gtsrcmap --- Make a source map
+# ************************************************************
+time -p /home/fermi/ScienceTools-v10r0p5/x86_64-unknown-linux-gnu-libc2.17/bin/gtsrcmaps scfile=/home/fermi/day02/data/pg1553_SC00.fits sctable="SC_DATA" expcube=/home/fermi/day02/spectrum/PG1553_spectrum_ltCube.fits cmap=/home/fermi/day02/spectrum/PG1553_spectrum_CCUBE.fits srcmdl=/home/fermi/day02/spectrum/PG1553_PowerLaw2_model.xml bexpmap=/home/fermi/day02/spectrum/PG1553_spectrum_BinnedMap.fits outfile=/home/fermi/day02/spectrum/PG1553_spectrum_srcMap.fits irfs="CALDB" evtype="INDEF" convol=yes resample=yes rfactor=2 minbinsz=0.1 ptsrc=yes psfcorr=yes emapbnds=no copyall=no chatter=2 clobber=yes debug=no gui=no mode="ql"
+Generating SourceMap for 3FGL J1450.4+0911 .....................!
+Generating SourceMap for 3FGL J1454.0+1622 .....................!
+Generating SourceMap for 3FGL J1504.4+1029 .....................!
+Generating SourceMap for 3FGL J1505.1+0326 .....................!
+Generating SourceMap for 3FGL J1506.6+0811 .....................!
+Generating SourceMap for 3FGL J1507.4+1725 .....................!
+Generating SourceMap for 3FGL J1512.2+0202 .....................!
+Generating SourceMap for 3FGL J1516.9+1926 .....................!
+Generating SourceMap for 3FGL J1533.2+1852 .....................!
+Generating SourceMap for 3FGL J1534.5+0128 .....................!
+Generating SourceMap for 3FGL J1540.8+1449 .....................!
+Generating SourceMap for 3FGL J1541.6+1414 .....................!
+Generating SourceMap for 3FGL J1541.8+1105 .....................!
+Generating SourceMap for 3FGL J1543.5+0451 .....................!
+Generating SourceMap for 3FGL J1543.5-0244 .....................!
+Generating SourceMap for 3FGL J1546.0+0818 .....................!
+Generating SourceMap for 3FGL J1546.6+1812 .....................!
+Generating SourceMap for 3FGL J1548.4+1455 .....................!
+Generating SourceMap for 3FGL J1549.4+0237 .....................!
+Generating SourceMap for 3FGL J1549.5+1709 .....................!
+Generating SourceMap for 3FGL J1550.5+0526 .....................!
+Generating SourceMap for 3FGL J1552.1+0852 .....................!
+Generating SourceMap for 3FGL J1553.3-0322c.....................!
+Generating SourceMap for 3FGL J1553.5+1256 .....................!
+Generating SourceMap for 3FGL J1554.4+2010 .....................!
+Generating SourceMap for 3FGL J1559.9+2319 .....................!
+Generating SourceMap for 3FGL J1601.9+2306 .....................!
+Generating SourceMap for 3FGL J1603.7+1106 .....................!
+Generating SourceMap for 3FGL J1607.0+1551 .....................!
+Generating SourceMap for 3FGL J1608.6+1029 .....................!
+Generating SourceMap for 3FGL J1611.9+1404 .....................!
+Generating SourceMap for 3FGL J1622.9-0312 .....................!
+Generating SourceMap for 3FGL J1625.1-0021 .....................!
+Generating SourceMap for 3FGL J1628.1+0254 .....................!
+Generating SourceMap for 3FGL J1630.8+1047 .....................!
+Generating SourceMap for 3FGL J1637.1+1314 .....................!
+Generating SourceMap for 3FGL J1640.9+1142 .....................!
+Generating SourceMap for 3FGL J1650.0+0356 .....................!
+Generating SourceMap for 3FGL J1650.8+0830 .....................!
+Generating SourceMap for 3FGL J1704.1+1234 .....................!
+Generating SourceMap for GalDiffModel....................!
+Generating SourceMap for IsoDiffModel....................!
+Generating SourceMap for PG1553.....................!
+real 965.69
+user 915.88
+sys 15.20
+
+# ************************************************************
+# ***   9     gtlike --- Run likelihood analysis
+# ************************************************************
+[FitMaker] Warning: First FIT did not converge with DRMNGB, trying DRMNFB
+[FitMaker] Warning: First FIT did not converge with DRMNFB either
+3FGL J1450.4+0911 
+   Spectrum: PowerLaw
+0      Prefactor:  4.395e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+1          Index: -2.349e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+2          Scale:  1.131e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1454.0+1622 
+   Spectrum: PowerLaw
+3      Prefactor:  1.895e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+4          Index: -2.594e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+5          Scale:  6.008e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1504.4+1029 
+   Spectrum: LogParabola
+6           norm:  3.539e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-09) fixed
+7          alpha:  2.075e+00  0.000e+00  5.000e-01  5.000e+00 ( 1.000e+00) fixed
+8           beta:  1.065e-01  0.000e+00  5.000e-04  5.000e+00 ( 1.000e+00) fixed
+9             Eb:  3.452e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1505.1+0326 
+   Spectrum: PowerLaw
+10     Prefactor:  1.542e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+11         Index: -2.609e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+12         Scale:  4.611e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1506.6+0811 
+   Spectrum: PowerLaw
+13     Prefactor:  5.449e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+14         Index: -1.874e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+15         Scale:  3.325e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1507.4+1725 
+   Spectrum: PowerLaw
+16     Prefactor:  1.027e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-14) fixed
+17         Index: -1.783e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+18         Scale:  5.011e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1512.2+0202 
+   Spectrum: PowerLaw
+19     Prefactor:  2.384e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+20         Index: -2.200e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+21         Scale:  1.015e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1516.9+1926 
+   Spectrum: PowerLaw
+22     Prefactor:  5.605e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+23         Index: -2.768e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+24         Scale:  4.160e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1533.2+1852 
+   Spectrum: PowerLaw
+25     Prefactor:  2.608e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-14) fixed
+26         Index: -1.894e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+27         Scale:  3.827e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1534.5+0128 
+   Spectrum: PowerLaw
+28     Prefactor:  9.253e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+29         Index: -2.779e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+30         Scale:  3.992e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1540.8+1449 
+   Spectrum: PowerLaw
+31     Prefactor:  1.337e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+32         Index: -2.345e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+33         Scale:  1.753e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1541.6+1414 
+   Spectrum: PowerLaw
+34     Prefactor:  1.779e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-14) fixed
+35         Index: -1.975e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+36         Scale:  4.186e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1541.8+1105 
+   Spectrum: PowerLaw
+37     Prefactor:  4.584e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+38         Index: -2.733e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+39         Scale:  4.558e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1543.5+0451 
+   Spectrum: PowerLaw
+40     Prefactor:  3.954e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+41         Index: -1.985e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+42         Scale:  3.130e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1543.5-0244 
+   Spectrum: LogParabola
+43          norm:  1.897e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+44         alpha:  2.393e+00  0.000e+00  5.000e-01  5.000e+00 ( 1.000e+00) fixed
+45          beta:  4.403e-01  0.000e+00  5.000e-04  5.000e+00 ( 1.000e+00) fixed
+46            Eb:  8.825e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1546.0+0818 
+   Spectrum: PowerLaw
+47     Prefactor:  2.274e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-14) fixed
+48         Index: -1.690e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+49         Scale:  5.176e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1546.6+1812 
+   Spectrum: PowerLaw
+50     Prefactor:  1.348e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+51         Index: -2.300e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+52         Scale:  1.629e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1548.4+1455 
+   Spectrum: PowerLaw
+53     Prefactor:  5.774e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+54         Index: -2.112e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+55         Scale:  1.547e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1549.4+0237 
+   Spectrum: PowerLaw
+56     Prefactor:  1.016e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+57         Index: -2.463e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+58         Scale:  5.734e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1549.5+1709 
+   Spectrum: PowerLaw
+59     Prefactor:  1.194e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-14) fixed
+60         Index: -1.916e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+61         Scale:  4.678e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1550.5+0526 
+   Spectrum: PowerLaw
+62     Prefactor:  2.569e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+63         Index: -2.336e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+64         Scale:  8.348e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1552.1+0852 
+   Spectrum: PowerLaw
+65     Prefactor:  5.057e+00  6.919e-01  1.000e-05  1.000e+03 ( 1.000e-13)
+66         Index: -2.020e+00  6.229e-02 -5.000e+00 -5.000e-01 ( 1.000e+00)
+67         Scale:  1.448e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1553.3-0322c
+   Spectrum: PowerLaw
+68     Prefactor:  4.571e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+69         Index: -2.563e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+70         Scale:  5.278e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1553.5+1256 
+   Spectrum: LogParabola
+71          norm:  4.612e+00  1.299e-01  1.000e-05  1.000e+03 ( 1.000e-11)
+72         alpha:  2.050e+00  2.623e-02  5.000e-01  5.000e+00 ( 1.000e+00)
+73          beta:  1.198e-01  1.630e-02  5.000e-04  5.000e+00 ( 1.000e+00)
+74            Eb:  5.041e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1554.4+2010 
+   Spectrum: PowerLaw
+75     Prefactor:  1.240e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+76         Index: -2.254e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+77         Scale:  1.711e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1559.9+2319 
+   Spectrum: PowerLaw
+78     Prefactor:  1.078e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+79         Index: -2.100e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+80         Scale:  2.190e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1601.9+2306 
+   Spectrum: LogParabola
+81          norm:  3.703e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+82         alpha:  2.148e+00  0.000e+00  5.000e-01  5.000e+00 ( 1.000e+00) fixed
+83          beta:  9.990e-01  0.000e+00  5.000e-04  5.000e+00 ( 1.000e+00) fixed
+84            Eb:  1.822e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1603.7+1106 
+   Spectrum: PowerLaw
+85     Prefactor:  1.145e+00  7.638e+00  1.000e-05  1.000e+03 ( 1.000e-13)
+86         Index: -1.839e+00  2.828e+00 -5.000e+00 -5.000e-01 ( 1.000e+00)
+87         Scale:  1.458e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1607.0+1551 
+   Spectrum: PowerLaw
+88     Prefactor:  4.400e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+89         Index: -2.284e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+90         Scale:  8.020e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1608.6+1029 
+   Spectrum: PowerLaw
+91     Prefactor:  1.347e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+92         Index: -2.619e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+93         Scale:  4.910e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1611.9+1404 
+   Spectrum: PowerLaw
+94     Prefactor:  2.903e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+95         Index: -2.209e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+96         Scale:  1.403e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1622.9-0312 
+   Spectrum: PowerLaw
+97     Prefactor:  6.821e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+98         Index: -2.234e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+99         Scale:  1.228e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1625.1-0021 
+   Spectrum: LogParabola
+100         norm:  3.246e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+101        alpha:  1.664e+00  0.000e+00  5.000e-01  5.000e+00 ( 1.000e+00) fixed
+102         beta:  5.125e-01  0.000e+00  5.000e-04  5.000e+00 ( 1.000e+00) fixed
+103           Eb:  1.164e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1628.1+0254 
+   Spectrum: PowerLaw
+104    Prefactor:  1.016e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+105        Index: -2.122e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+106        Scale:  1.869e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1630.8+1047 
+   Spectrum: PowerLaw
+107    Prefactor:  8.112e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+108        Index: -2.805e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+109        Scale:  3.945e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1637.1+1314 
+   Spectrum: PowerLaw
+110    Prefactor:  6.269e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+111        Index: -2.221e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+112        Scale:  2.324e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1640.9+1142 
+   Spectrum: PowerLaw
+113    Prefactor:  1.420e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+114        Index: -2.296e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+115        Scale:  1.736e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1650.0+0356 
+   Spectrum: PowerLaw
+116    Prefactor:  8.335e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+117        Index: -2.166e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+118        Scale:  2.180e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1650.8+0830 
+   Spectrum: PowerLaw
+119    Prefactor:  6.445e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+120        Index: -2.659e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+121        Scale:  4.622e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1704.1+1234 
+   Spectrum: PowerLaw
+122    Prefactor:  2.732e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+123        Index: -2.583e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+124        Scale:  6.525e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+GalDiffModel
+   Spectrum: ConstantValue
+125        Value:  9.513e-01  4.347e-03  1.000e-02  1.000e+01 ( 1.000e+00)
+
+IsoDiffModel
+   Spectrum: FileFunction
+126   Normalization:  1.340e+00  7.845e-03  1.000e-03  1.000e+03 ( 1.000e+00)
+
+PG1553
+   Spectrum: EblAtten::PowerLaw2
+127     Integral:  7.038e+01  2.013e+00  1.000e-05  1.000e+03 ( 1.000e-09)
+128        Index: -1.587e+00  1.357e-02 -5.000e+00 -5.000e-01 ( 1.000e+00)
+129   LowerLimit:  1.000e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+130   UpperLimit:  3.000e+05  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+131     tau_norm:  2.049e+00  4.678e-01  0.000e+00  2.500e+00 ( 1.000e+00)
+132     redshift:  3.600e-01  0.000e+00  0.000e+00  5.000e+00 ( 1.000e+00) fixed
+133    ebl_model:  0.000e+00  0.000e+00  0.000e+00  2.000e+01 ( 1.000e+00) fixed
+
+
+# ************************************************************
+# ***  10 Remove all the weak (TS<1.00) sources
+# ************************************************************
+[FitMaker]: deleting source 3FGL J1450.4+0911  with TS = 0.846593892958 from the model
+[FitMaker]: deleting source 3FGL J1454.0+1622  with TS = 0.590888825536 from the model
+[FitMaker]: deleting source 3FGL J1507.4+1725  with TS = 0.130843430292 from the model
+[FitMaker]: deleting source 3FGL J1540.8+1449  with TS = -3.91971547517 from the model
+[FitMaker]: deleting source 3FGL J1543.5-0244  with TS = 0.26434391574 from the model
+[FitMaker]: deleting source 3FGL J1546.6+1812  with TS = -8.44830403768 from the model
+[FitMaker]: deleting source 3FGL J1549.5+1709  with TS = -5.3335097463 from the model
+[FitMaker]: deleting source 3FGL J1559.9+2319  with TS = -2.11925015814 from the model
+[FitMaker]: deleting source 3FGL J1601.9+2306  with TS = -0.371782795934 from the model
+[FitMaker]: deleting source 3FGL J1630.8+1047  with TS = -12.6373924337 from the model
+[FitMaker]: deleting source 3FGL J1637.1+1314  with TS = -3.76015593053 from the model
+[FitMaker]: deleting source 3FGL J1640.9+1142  with TS = -2.62510281464 from the model
+[FitMaker]: deleting source 3FGL J1650.0+0356  with TS = -3.43859930395 from the model
+[FitMaker]: deleting source 3FGL J1650.8+0830  with TS = -2.4387283597 from the model
+[FitMaker]: deleting source 3FGL J1704.1+1234  with TS = -4.09528566262 from the model
+
+# ************************************************************
+# ***  11 Re-optimize --- 
+# ************************************************************
+
+
+[FitMaker]: Fit with gtlike preformed
+
+# ************************************************************
+# ***  12    Results --- Print results of the fit
+# ************************************************************
+3FGL J1504.4+1029 
+   Spectrum: LogParabola
+0           norm:  3.539e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-09) fixed
+1          alpha:  2.075e+00  0.000e+00  5.000e-01  5.000e+00 ( 1.000e+00) fixed
+2           beta:  1.065e-01  0.000e+00  5.000e-04  5.000e+00 ( 1.000e+00) fixed
+3             Eb:  3.452e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1505.1+0326 
+   Spectrum: PowerLaw
+4      Prefactor:  1.542e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+5          Index: -2.609e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+6          Scale:  4.611e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1506.6+0811 
+   Spectrum: PowerLaw
+7      Prefactor:  5.449e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+8          Index: -1.874e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+9          Scale:  3.325e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1512.2+0202 
+   Spectrum: PowerLaw
+10     Prefactor:  2.384e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+11         Index: -2.200e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+12         Scale:  1.015e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1516.9+1926 
+   Spectrum: PowerLaw
+13     Prefactor:  5.605e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+14         Index: -2.768e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+15         Scale:  4.160e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1533.2+1852 
+   Spectrum: PowerLaw
+16     Prefactor:  2.608e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-14) fixed
+17         Index: -1.894e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+18         Scale:  3.827e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1534.5+0128 
+   Spectrum: PowerLaw
+19     Prefactor:  9.253e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+20         Index: -2.779e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+21         Scale:  3.992e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1541.6+1414 
+   Spectrum: PowerLaw
+22     Prefactor:  1.779e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-14) fixed
+23         Index: -1.975e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+24         Scale:  4.186e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1541.8+1105 
+   Spectrum: PowerLaw
+25     Prefactor:  4.584e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+26         Index: -2.733e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+27         Scale:  4.558e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1543.5+0451 
+   Spectrum: PowerLaw
+28     Prefactor:  3.954e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+29         Index: -1.985e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+30         Scale:  3.130e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1546.0+0818 
+   Spectrum: PowerLaw
+31     Prefactor:  2.274e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-14) fixed
+32         Index: -1.690e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+33         Scale:  5.176e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1548.4+1455 
+   Spectrum: PowerLaw
+34     Prefactor:  5.774e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+35         Index: -2.112e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+36         Scale:  1.547e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1549.4+0237 
+   Spectrum: PowerLaw
+37     Prefactor:  1.016e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+38         Index: -2.463e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+39         Scale:  5.734e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1550.5+0526 
+   Spectrum: PowerLaw
+40     Prefactor:  2.569e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+41         Index: -2.336e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+42         Scale:  8.348e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1552.1+0852 
+   Spectrum: PowerLaw
+43     Prefactor:  4.853e+00  1.070e+00  1.000e-05  1.000e+03 ( 1.000e-13)
+44         Index: -1.992e+00  1.550e-01 -5.000e+00 -5.000e-01 ( 1.000e+00)
+45         Scale:  1.448e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1553.3-0322c
+   Spectrum: PowerLaw
+46     Prefactor:  4.571e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+47         Index: -2.563e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+48         Scale:  5.278e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1553.5+1256 
+   Spectrum: LogParabola
+49          norm:  4.602e+00  2.483e-01  1.000e-05  1.000e+03 ( 1.000e-11)
+50         alpha:  2.055e+00  5.987e-02  5.000e-01  5.000e+00 ( 1.000e+00)
+51          beta:  1.170e-01  3.218e-02  5.000e-04  5.000e+00 ( 1.000e+00)
+52            Eb:  5.041e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1554.4+2010 
+   Spectrum: PowerLaw
+53     Prefactor:  1.240e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+54         Index: -2.254e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+55         Scale:  1.711e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1603.7+1106 
+   Spectrum: PowerLaw
+56     Prefactor:  1.078e+00  9.613e-01  1.000e-05  1.000e+03 ( 1.000e-13)
+57         Index: -1.811e+00  4.680e-01 -5.000e+00 -5.000e-01 ( 1.000e+00)
+58         Scale:  1.458e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1607.0+1551 
+   Spectrum: PowerLaw
+59     Prefactor:  4.400e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+60         Index: -2.284e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+61         Scale:  8.020e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1608.6+1029 
+   Spectrum: PowerLaw
+62     Prefactor:  1.347e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+63         Index: -2.619e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+64         Scale:  4.910e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1611.9+1404 
+   Spectrum: PowerLaw
+65     Prefactor:  2.903e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+66         Index: -2.209e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+67         Scale:  1.403e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1622.9-0312 
+   Spectrum: PowerLaw
+68     Prefactor:  6.821e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-12) fixed
+69         Index: -2.234e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+70         Scale:  1.228e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1625.1-0021 
+   Spectrum: LogParabola
+71          norm:  3.246e-01  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-11) fixed
+72         alpha:  1.664e+00  0.000e+00  5.000e-01  5.000e+00 ( 1.000e+00) fixed
+73          beta:  5.125e-01  0.000e+00  5.000e-04  5.000e+00 ( 1.000e+00) fixed
+74            Eb:  1.164e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+3FGL J1628.1+0254 
+   Spectrum: PowerLaw
+75     Prefactor:  1.016e+00  0.000e+00  1.000e-05  1.000e+03 ( 1.000e-13) fixed
+76         Index: -2.122e+00  0.000e+00 -5.000e+00 -5.000e-01 ( 1.000e+00) fixed
+77         Scale:  1.869e+03  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+
+GalDiffModel
+   Spectrum: ConstantValue
+78         Value:  9.521e-01  1.568e-02  1.000e-02  1.000e+01 ( 1.000e+00)
+
+IsoDiffModel
+   Spectrum: FileFunction
+79    Normalization:  1.366e+00  2.909e-02  1.000e-03  1.000e+03 ( 1.000e+00)
+
+PG1553
+   Spectrum: EblAtten::PowerLaw2
+80      Integral:  7.032e+01  4.678e+00  1.000e-05  1.000e+03 ( 1.000e-09)
+81         Index: -1.586e+00  3.269e-02 -5.000e+00 -5.000e-01 ( 1.000e+00)
+82    LowerLimit:  1.000e+02  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+83    UpperLimit:  3.000e+05  0.000e+00  3.000e+01  3.000e+05 ( 1.000e+00) fixed
+84      tau_norm:  2.044e+00  8.160e-01  0.000e+00  2.500e+00 ( 1.000e+00)
+85      redshift:  3.600e-01  0.000e+00  0.000e+00  5.000e+00 ( 1.000e+00) fixed
+86     ebl_model:  0.000e+00  0.000e+00  0.000e+00  2.000e+01 ( 1.000e+00) fixed
+ 
+
+[FitMaker]: Results for the Fit
+Source Name	Npred	TS
+Values and (MINOS) errors for PG1553
+TS :  3016.3392973
+Integral :  70.32 +/-  4.68 [ -5.17, + 4.22 ] 1e-09
+Index :  -1.59 +/-  0.03 [ -0.03, + 0.04 ] 1e+00
+LowerLimit :  100.00   1e+00
+UpperLimit :  300000.00   1e+00
+tau_norm :  2.04 +/-  0.82 [ -0.74, + 0.00 ] 1e+00
+redshift :  0.36   1e+00
+ebl_model :  0.00   1e+00
+The covariance matrix is :
+[[  2.18853804e+01  -1.16158973e-01  -6.66124967e-01]
+ [ -1.16158973e-01   1.06879142e-03   8.81604040e-03]
+ [ -6.66124967e-01   8.81604040e-03   6.65814112e-01]]
+
+
+Source Flux  [1.00e+02 MeV, 3.00e+05 MeV] : 
+3FGL J1504.4+1029    Integral Flux : 3.94e-07 +/-  0.00e+00 ph/cm2/s
+3FGL J1505.1+0326    Integral Flux : 5.18e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1506.6+0811    Integral Flux : 4.43e-09 +/-  0.00e+00 ph/cm2/s
+3FGL J1512.2+0202    Integral Flux : 3.26e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1516.9+1926    Integral Flux : 1.64e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1533.2+1852    Integral Flux : 2.91e-09 +/-  0.00e+00 ph/cm2/s
+3FGL J1534.5+0128    Integral Flux : 2.44e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1541.6+1414    Integral Flux : 2.91e-09 +/-  0.00e+00 ph/cm2/s
+3FGL J1541.8+1105    Integral Flux : 1.67e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1543.5+0451    Integral Flux : 3.73e-09 +/-  0.00e+00 ph/cm2/s
+3FGL J1546.0+0818    Integral Flux : 2.59e-09 +/-  0.00e+00 ph/cm2/s
+3FGL J1548.4+1455    Integral Flux : 1.69e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1549.4+0237    Integral Flux : 5.13e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1550.5+0526    Integral Flux : 2.74e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1552.1+0852    Integral Flux : 1.00e-08 +/-  3.67e-09 ph/cm2/s
+3FGL J1553.3-0322c   Integral Flux : 2.08e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1553.5+1256    Integral Flux : 1.05e-07 +/-  8.04e-09 ph/cm2/s
+3FGL J1554.4+2010    Integral Flux : 5.95e-09 +/-  0.00e+00 ph/cm2/s
+3FGL J1603.7+1106    Integral Flux : 1.70e-09 +/-  2.50e-09 ph/cm2/s
+3FGL J1607.0+1551    Integral Flux : 3.99e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1608.6+1029    Integral Flux : 5.38e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1611.9+1404    Integral Flux : 8.23e-09 +/-  0.00e+00 ph/cm2/s
+3FGL J1622.9-0312    Integral Flux : 1.50e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1625.1-0021    Integral Flux : 1.12e-08 +/-  0.00e+00 ph/cm2/s
+3FGL J1628.1+0254    Integral Flux : 4.53e-09 +/-  0.00e+00 ph/cm2/s
+GalDiffModel   Integral Flux : 4.65e-04 +/-  7.66e-06 ph/cm2/s
+IsoDiffModel   Integral Flux : 2.04e-04 +/-  4.35e-06 ph/cm2/s
+PG1553   Integral Flux : 6.97e-08 +/-  4.75e-09 ph/cm2/s
+
+
+# ************************************************************
+# ***  13    PlotSED --- Generate SED plot
+# ************************************************************
+[Result]: Decorrelation energy : 2.40e+03 MeV
+[Result]: Diffential flux  at the Decorrelation energy : 2.70e-12 +/-  1.17e-13 ph/cm2/s/MeV
+[Result]: SED value at the Decorrelation energy : 2.48e-11 +/-  1.07e-12 erg/cm2/s
+Info in <TCanvas::Print>: eps file /home/fermi/day02/spectrum/Spectrum/SED_PG1553_PowerLaw2_CountsPlot.eps has been created
+Info in <TCanvas::SaveSource>: C++ Macro file: /home/fermi/day02/spectrum/Spectrum/SED_PG1553_PowerLaw2_CountsPlot.C has been generated
+Info in <TCanvas::Print>: png file /home/fermi/day02/spectrum/Spectrum/SED_PG1553_PowerLaw2_CountsPlot.png has been created
+Info in <TCanvas::Print>: eps file /home/fermi/day02/spectrum/Spectrum/SED_PG1553_PowerLaw2_ResPlot.eps has been created
+Info in <TCanvas::SaveSource>: C++ Macro file: /home/fermi/day02/spectrum/Spectrum/SED_PG1553_PowerLaw2_ResPlot.C has been generated
+Info in <TCanvas::Print>: png file /home/fermi/day02/spectrum/Spectrum/SED_PG1553_PowerLaw2_ResPlot.png has been created
+[Message]: Setting the decorrelation energy as new Scale for the spectral parameters
+
+# ************************************************************
+# ***  14    gtmodel --- Make model map
+# ************************************************************
+time -p /home/fermi/ScienceTools-v10r0p5/x86_64-unknown-linux-gnu-libc2.17/bin/gtmodel srcmaps=/home/fermi/day02/spectrum/PG1553_spectrum_srcMap.fits srcmdl=/home/fermi/day02/spectrum/PG1553_PowerLaw2_spectrum_out.xml outfile=/home/fermi/day02/spectrum/PG1553_spectrum_ModelMap.fits irfs="CALDB" evtype="INDEF" expcube=/home/fermi/day02/spectrum/PG1553_spectrum_ltCube.fits bexpmap=/home/fermi/day02/spectrum/PG1553_spectrum_BinnedMap.fits convol=yes resample=yes rfactor=2 outtype="CMAP" psfcorr=yes edisp=no chatter=2 clobber=yes debug=no gui=no mode="ql"
+real 436.78
+user 78.56
+sys 31.23
+rm: cannot remove ‘/home/fermi/day02/spectrum/PG1553_Subtract_Model_cmap.fits’: No such file or directory
+rm: cannot remove ‘/home/fermi/day02/spectrum/PG1553_Residual_Model_cmap.fits’: No such file or directory
+

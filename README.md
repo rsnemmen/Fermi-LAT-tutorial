@@ -14,7 +14,7 @@ This activity has a total duration of 4 hours distributed in two days. Given the
 
 To participate in the tutorial we recommend that you bring your laptop. Your laptop should have at least 4GB of RAM in order to comfortably run the VM. You will need about 26 GB of free space in your computer: 8 GB for the download and 18 GB to install and run the VM.
 
-All the analysis software and data files required for this hands-on activity are already installed in a ready-to-use, self-contained [virtual machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine). The VM runs on Windows, Linux and MacOS and is based on the *Scientific Linux distribution*. It contains the `Fermi ScienceTools`, `Enrico` and `ds9`.
+All the analysis software and data files required for this hands-on activity are already installed in a ready-to-use, self-contained [virtual machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine). The VM runs on Windows, Linux and MacOS and is based on the *Scientific Linux distribution* (64 bit). It contains the `Fermi ScienceTools`, `Enrico` and `ds9`.
 
 In order to run the VM, you will need to [download and install the VirtualBox binaries](https://www.virtualbox.org/wiki/Downloads) appropriate for your OS. 
 
@@ -25,7 +25,9 @@ We recommend that you start downloading early our virtual machine, given the lar
 *Please do not download large files during the tutorial or the WIFI network will overload*. We will also distribute the software and data you need via USB sticks, if you did not download them before the school.
 
 1. [VirtualBox download](https://www.virtualbox.org/wiki/Downloads)
-2. Virtual machine with all software and data (6 GB)
+2. Virtual machine with all software and data (8 GB)
+
+After downloading the VM file, follow the instructions below.
 
 ## Instructions for installing VM
 
