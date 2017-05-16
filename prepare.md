@@ -15,7 +15,6 @@ The following software will be needed for this hands-on activity:
 
 - `Fermi ScienceTools`
 - `ds9`
-- `topcat`
 - `Enrico`
 
 **Important:** All the analysis software and data files required for this hands-on activity are already installed in a ready-to-use, self-contained [virtual machine (VM)](https://en.wikipedia.org/wiki/Virtual_machine). The VM runs on Windows, Linux and MacOS. *Please do not download large files during the tutorial or the WIFI network will overload*. We will also distribute the software and data you need via USB sticks, if you did not download them before the school.
@@ -100,12 +99,12 @@ Once you select your favorite source for inspection which will define the sky co
 - Date range (MET): 441763203, 457401604. LAT uses a very special time unit called the [Mission Elapsed Time (MET)](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data/Time_in_ScienceTools.html) which is the number of seconds since midnight at the beginning of January 1, 2001, in the UTC system. The range given here corresponds to the first semester of 2015.
 - Energy range (MeV): 100, 300000. This is the normal energy range used in LAT analysis.
 
-Once you made your choices for selecting the photons, normally you would go to go to the NASA FSSC server website, input the selection criteria and download the files. However, in order to save time and bandwidth, all the necessary files have already been downloaded and are available in the folder `day01`. 
+Once you made your choices for selecting the photons, normally you would go to go to the NASA FSSC server website, input the selection criteria and download the files. However, in order to save time and bandwidth, all the necessary files have already been downloaded and are available in the folder `LAT_day01`. 
 
 
 ## Data files available in the VM
 
-The directory `~/day01` contains the following following files that will be required in the activities that follow:
+The directory `~/LAT_day01` contains the following following files that will be required in the activities that follow:
 
 - `3c454*.fits`: events files for the blazar 3C 454.3
 - `vela*.fits`: events files for the Vela pulsar
@@ -165,7 +164,7 @@ First open a terminal:
 Issue the commands
 
 ```shell
-cd day01
+cd LAT_day01
 ipython --pylab
 ```
 
