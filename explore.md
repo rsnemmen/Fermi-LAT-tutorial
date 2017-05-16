@@ -4,7 +4,8 @@
 
 ## quick inspection of spectra, LC
 
-http://fermi-hero.readthedocs.io/en/latest/getting_started/explore_events.html
+[comment]: <> (http://fermi-hero.readthedocs.io/en/latest/getting_started/explore_events.html) 
+
 
 energy distribution
 
