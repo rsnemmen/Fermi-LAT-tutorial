@@ -43,7 +43,7 @@ After downloading the VM file, follow the instructions below.
 
 ![](./figures/virtualbox.png "VirtualBox window listing the VM after successfull import")
 
-6. In the end, you should have a window that looks like this. Contact the organizers for the password. You are good to go!
+6. In the end, you should have a window that looks like this. ~~Contact the organizers for the password~~ The password is `saopaulo`. You are good to go!
 
 ![](./figures/welcome_screen.png "VM after booting")
 
