@@ -39,7 +39,7 @@ Plot the histogram of the time distribution for the events—the counts lightcur
 You should get something similar to this plot:
 ![](./figures/counts_lightcurve.png)
 
-Notice how variable is the region we are observing.
+Notice how variable is the region we are observing. Also note that, at this point, we do not know what photons are coming from the source we are interested in, and photons are coming from background.
 
 
 # The spatial distribution of events: The *counts map*
@@ -90,15 +90,12 @@ It is important to inspect your data prior to proceeding to verify that the cont
 
 Now you should play around a bit with `ds9` to explore its different options. 
 
-### Optional exercise
-
-Can you find out what is the strong point source in the lower right corner of the image?
 
 ## Plot counts map with Python
 
 There is another way to generate the counts map using Python. This is not as interactive as using `ds9`, but provides a way of quick inspection in those cases when `ds9` is not installed.
 
-```python
+```
 ipython --pylab
 
 import pyfits
