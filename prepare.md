@@ -82,7 +82,7 @@ If you want more information about the files you just downloaded, you can check 
 - A 1-dimensional ENERGY histogram is called a counts spectrum.
 - A 1-dimensional TIME histogram is called a counts lightcurve.
 
-In the Day 2 hand-on session, we will show you how to create a *flux spectrum (SED)*, *flux lightcurve* and *flux image*, where `flux = counts / exposure` and `exposure = (effective area) x (observation time)` and in addition the exposure, the spatial resolution--called point spread function (PSF)--and energy resolution have all been taken into account.
+In the Day 2 hand-on session, we will show you how to create a *flux spectrum* (also called spectral energy distribution or SED), *flux lightcurve* and *flux image*, where `flux = counts / exposure` and `exposure = (effective area) x (observation time)` and in addition the exposure, the spatial resolution--called point spread function (PSF)--and energy resolution have all been taken into account.
 
 
 # Obtain LAT data 

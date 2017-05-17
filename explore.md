@@ -1,26 +1,56 @@
 
 
-# Exploring The Data
+Exploring The Data
+=====================
 
-## quick inspection of spectra, LC
+Now that we have prepared an event list that only contains astrophysical photons, we will do some basic inspection of the data—what can we learn before doing any kind of statistical modeling?
+
+We will have a look at the energy and time distribution of the events (counts spectrum and count light curve, respectively) as well as their spatial distribution—i.e. creating an (*RA, DEC*) image of the detections (counts map).
+
+# Exercise 1: Count spectrum
 
 [comment]: <> (http://fermi-hero.readthedocs.io/en/latest/getting_started/explore_events.html) 
 
-
-energy distribution
-
-time series
+Plot the histogram of the distribution of energies for the events in the events file resulting from all cuts you performed in the last session.
 
 - - - 
+
+You should get something that looks like this:
+![](./figures/counts_spectrum.png)
+
+Note that the counts spectrum for 3C 454.3 looks like a power-law. However, keep in mind that this is not the spectral energy distribution (energy flux x energy). Why? Because in order to have the SED we need the flux which is defined by
+
+    flux = counts / exposure,
+
+where
+
+    exposure = (effective area) x (observation time).
+
+In other words, we have to correct for the exposure to get the SED. We will perform this exposure-compensation tomorrow. 
+
+
+
+# Exercise 2: Counts lightcurve 
+
+Plot the histogram of the time distribution for the events—the counts lightcurve.
+
+[comment]: <> (which is proportional to the event rate since we use equal-width time bins)
+
+You should get something similar to this plot:
+![](./figures/counts_lightcurve.png)
+
+Notice how variable is the region we are observing.
+
+xxxxxxxxx
+# The spatial distribution of events: The *counts map*
 
 
 Next, we create a Counts Map of the ROI, summed over photon energies, in order to identify candidate sources and to ensure that the field looks sensible as a simple sanity check.
 
-For creating the Counts Map, we will use the *gtbin** *tool with the option "CMAP" (no spacecraft file is necessary for this step). Then we will view the output file, as shown below:
+For creating the Counts Map, we will use the `gtbin` *tool with the option "CMAP" (no spacecraft file is necessary for this step). Then we will view the output file, as shown below:
 
-<table>
-  <tr>
-    <td>>> gtbin
+``` 
+[fermi@localhost ~]$ gtbin
 >> Type of output file (CCUBE|CMAP|LC|PHA1|PHA2|HEALPIX) [PHA2] CMAP
 Event data file name[] 3C279_region_filtered_gti.fits
 Output file name[] 3C279_cmap.fits
@@ -33,9 +63,8 @@ First coordinate of image center in degrees (RA or galactic l)[] 193.98
 Second coordinate of image center in degrees (DEC or galactic b)[] -5.82
 Rotation angle of image axis, in degrees[] 0.0
 Projection method Projection method e.g. AIT|ARC|CAR|GLS|MER|NCP|SIN|STG|TAN:[] AIT
-gtbin: WARNING: No spacecraft file: EXPOSURE keyword will be set equal to ontime.</td>
-  </tr>
-</table>
+gtbin: WARNING: No spacecraft file: EXPOSURE keyword will be set equal to ontime.
+```
 
 UPDATE THIS WITH THE NEW ROI
 We chose an ROI of 12 degrees, corresponding to 24 degrees in diameter. Since we want a pixel size of 0.08 degrees/pixel, then we must select 24/0.08=300 pixels for the size of the x and y axes. 
@@ -82,9 +111,6 @@ Since many people are using remotely the same computer in this lab, it can get t
 
 Just follow these steps:
 
-<table>
-  <tr>
-    <td>>> fermi
 >> ipython
 
 import pyfits
@@ -97,5 +123,7 @@ plt.show()</td>
   </tr>
 </table>
 
+- - - 
 
+[Solutions](./explore-solutions.md).
 
