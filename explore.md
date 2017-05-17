@@ -41,89 +41,74 @@ You should get something similar to this plot:
 
 Notice how variable is the region we are observing.
 
-xxxxxxxxx
+
 # The spatial distribution of events: The *counts map*
 
+Next, you will create a Counts Map of the ROI (region of interest), summed over photon energies, in order to identify candidate sources and to ensure that the field looks sensible as a simple sanity check.
 
-Next, we create a Counts Map of the ROI, summed over photon energies, in order to identify candidate sources and to ensure that the field looks sensible as a simple sanity check.
-
-For creating the Counts Map, we will use the `gtbin` *tool with the option "CMAP" (no spacecraft file is necessary for this step). Then we will view the output file, as shown below:
+For creating the Counts Map, we will use the `gtbin` tool with the option "CMAP" (no spacecraft file is necessary for this step). Then we will view the output file, as shown below:
 
 ``` 
 [fermi@localhost ~]$ gtbin
 >> Type of output file (CCUBE|CMAP|LC|PHA1|PHA2|HEALPIX) [PHA2] CMAP
-Event data file name[] 3C279_region_filtered_gti.fits
-Output file name[] 3C279_cmap.fits
+Event data file name[] [SOURCE]_filtered_gti.fits
+Output file name[] [SOURCE]_cmap.fits
 Spacecraft data file name[] NONE
-Size of the X axis in pixels[] 300
-Size of the Y axis in pixels[] 300
+Size of the X axis in pixels[] 400
+Size of the Y axis in pixels[] 400
 Image scale (in degrees/pixel)[] 0.08
 Coordinate system (CEL - celestial, GAL -galactic)[] CEL
-First coordinate of image center in degrees (RA or galactic l)[] 193.98
-Second coordinate of image center in degrees (DEC or galactic b)[] -5.82
+First coordinate of image center in degrees (RA or galactic l)[] [SOURCE RA]
+Second coordinate of image center in degrees (DEC or galactic b)[] [SOURCE DEC]
 Rotation angle of image axis, in degrees[] 0.0
 Projection method Projection method e.g. AIT|ARC|CAR|GLS|MER|NCP|SIN|STG|TAN:[] AIT
 gtbin: WARNING: No spacecraft file: EXPOSURE keyword will be set equal to ontime.
 ```
 
-UPDATE THIS WITH THE NEW ROI
-We chose an ROI of 12 degrees, corresponding to 24 degrees in diameter. Since we want a pixel size of 0.08 degrees/pixel, then we must select 24/0.08=300 pixels for the size of the x and y axes. 
+Explanation about the image scale: Since we have a ROI of 20˚ radius (40˚ diameter) and we want a 400x400 pixels image, we must select a pixel size of 
 
-## Plot an image: The counts Map
+    pixel size = (ROI diameter)/(image size) = 40/400 = 0.1.
 
-Making a Counts Map With *gtbin*
-python way
-ds9 way
+## Plot counts map with `ds9`
 
-- - - 
+You will also be using a software called `ds9`, which is a FITS File Viewer which gives you a lot of interactive control to explore the data. Starting it up is easy, just type:
 
-In this section, in addition to the Fermi Science Tools, you will also be using a software called *ds9*, which is a FITS File Viewer.
-
-*ds9* gives you much more interactive control of how you explore the data. Starting it up is easy, just type:
-
-<table>
-  <tr>
-    <td>>> ds9 3C279_cmap.fits & </td>
-  </tr>
-</table>
-
+    ds9 3C279_cmap.fits &
 
 You can see several strong sources and a number of weaker sources in the map.
 
-It is important to inspect your data prior to proceeding to verify that the contents are as you expect. A malformed data query or improper data selection can generate a non-circular region, or a file with zero events. By inspecting your data to analysis, you have an opportunity to detect such issues early in the analysis.
+Let’s improve our image visualization. Do you see the gray buttons located in-between the image and the coordinates? Select the options 
 
-IMPROVING THE IMAGE VISUALIZATION
-SCALE => SQRT
-COLOR => B
-ZOOM => FIT
+- `scale -> sqrt` (show `sqrt(counts)`)
+- `color -> b` (change colormap to something more pretty)
+- `zoom -> fit`
 
-you should get something like this (in the case of the GC):
+You should end up with something that looks like the image below—obtained for the case of the Galactic Center:
 ![](./figures/ds9.png)
 
+It is important to inspect your data prior to proceeding to verify that the contents are as you expect. A malformed data query or improper data selection can generate a non-circular region, or a file with zero events. By inspecting your data, you have an opportunity to detect such issues early in the analysis.
 
-what is the source in the lower right corner of the image?
+Now you should play around a bit with `ds9` to explore its different options. 
 
-play around
+### Optional exercise
 
-## Viewing the Counts Map with *python* (if necessary)
+Can you find out what is the strong point source in the lower right corner of the image?
 
-Since many people are using remotely the same computer in this lab, it can get too slow when we use *ds9*. If this is the case, there is another way to generate the Counts Map that is much more computer efficient, but will not provide opportunities to explore the data further.
+## Plot counts map with Python
 
-Just follow these steps:
+There is another way to generate the counts map using Python. This is not as interactive as using `ds9`, but provides a way of quick inspection in those cases when `ds9` is not installed.
 
->> ipython
+```python
+ipython --pylab
 
 import pyfits
-cmap = pyfits.open('3C279_cmap.fits')
-import matplotlib.pyplot as plt
-fig = plt.figure(figsize=(16,8))
-plt.imshow(cmap[0].data)
-plt.colorbar()
-plt.show()</td>
-  </tr>
-</table>
+cmap = pyfits.open('[SOURCE]_cmap.fits')
+imshow(cmap[0].data)
+colorbar()
+show()
+```
 
 - - - 
 
-[Solutions](./explore-solutions.md).
+[Solutions to exercise](./explore-solutions.md).
 
