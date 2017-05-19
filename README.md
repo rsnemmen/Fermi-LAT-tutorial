@@ -31,6 +31,10 @@ We recommend that you start downloading early our virtual machine, given the lar
 
     wget -O Hands-on_Scientific_Linux.ova https://www.dropbox.com/s/0b874qnu8slc51b/Hands-on%20Scientific%20Linux.ova?dl=0
 
+If the download gets interrupted, you can resume the download from where it stopped:
+
+    wget -c -O Hands-on_Scientific_Linux.ova https://www.dropbox.com/s/0b874qnu8slc51b/Hands-on%20Scientific%20Linux.ova?dl=0
+
 After downloading the VM file, follow the instructions below.
 
 ## Instructions for installing VM
@@ -46,6 +50,13 @@ After downloading the VM file, follow the instructions below.
 6. In the end, you should have a window that looks like this. ~~Contact the organizers for the password~~ The password is `saopaulo`. You are good to go!
 
 ![](./figures/welcome_screen.png "VM after booting")
+
+## Some potential VM issues
+
+- If your filesystem is FAT or FAT32, it will not allow the creation of files with sizes bigger than 2 or 4 GB. Since the VM file size is >10 GB, you will not be able to download the file. In this case, you will have to [convert your filesystem to NTFS or VFAT](https://www.google.com.br/search?client=safari&rls=en&q=convert+from+fat+to+vfat+windows&ie=UTF-8&oe=UTF-8&gws_rd=cr&ei=ifkeWbvzJsy1wASQ24ToBw).
+- If you try to run the VM in VirtualBox and you get the error message `VT-x/AMD-V hardware acceleration is not available in your system`, that means that either you have to access your computer’s BIOS and switch on a specific setting, or your CPU is too old and will not support virtualization. See [this link](https://www.howtogeek.com/213795/how-to-enable-intel-vt-x-in-your-computers-bios-or-uefi-firmware/) for more information. 
+
+
 
 ## Python and Linux background
 

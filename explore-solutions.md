@@ -30,4 +30,5 @@ hist(log10(events['TIME']),100)
 xlabel('Time (s)')
 ```
 
+![](./figures/counts_lightcurve.png)
 

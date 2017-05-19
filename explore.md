@@ -107,5 +107,7 @@ show()
 
 - - - 
 
-[Solutions to exercise](./explore-solutions.md).
+In the next session, we will learn to obtain actual fluxes and a energy spectrum from the sources we are interested. 
+
+[Solutions to exercises in this session](./explore-solutions.md).
 
