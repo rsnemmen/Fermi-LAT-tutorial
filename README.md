@@ -76,7 +76,7 @@ This hands-on activity will make considerable use of Python and Linux. If you ar
 
 ## Day two
 
-- 4:30-5:00: Overview of activity, basic theory of spectral modeling: [slides](./day02-intro_slides.pdf), [jupyter notebook](“./fermi likelihood lecture.ipynb”)
+- 4:30-5:00: Overview of activity, basic theory of spectral modeling: [slides](./day02-intro_slides.pdf), [jupyter notebook](./fermi_likelihood_lecture.ipynb)
 - 5:00-5:30: [Getting a flux: Likelihood analysis](./likelihood.md)
 - 5:30-6:30: [Creating a spectrum (SED)](./sed.md)
 - Bonus: [Producing a light-curve](./lc.md)
