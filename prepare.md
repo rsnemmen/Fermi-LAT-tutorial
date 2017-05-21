@@ -74,9 +74,9 @@ The most important parameters in the events file are:
 2. A **spacecraft file** containing spacecraft position and orientation information at 30 second intervals. This file is required for LAT science analysis. You can use the same spacecraft file (~700 MB for 5 years) for all your analyses as long as it covers the time range you want to analyze. That’s all you need to know about the spacecraft data file. The LAT data server will only generate a single spacecraft file, regardless of the size of the dataset.
 3. Most analyses also require **models of the isotropic and Galactic diffuse background**. 
 
-All these files are pre-installed in the VM.
+All these files are pre-installed in the VM. If you are *not* using the VM, the data files are available for downloading at [this link](https://figshare.com/articles/Fermi_LAT_Hands-on_activity_Sao_Paulo_CTA_School_2017/5027513).
 
-If you want more information about the files you just downloaded, you can check out [this website](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data/LAT_Data_Columns.html). In this tutorial we will have a quick look at the Fermi LAT dataset by binning the events into histograms:
+If you want more information about these files, you can check out [this website](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data/LAT_Data_Columns.html). In this tutorial we will have a quick look at the Fermi LAT dataset by binning the events into histograms:
 
 - A 2-dimensional (L, B) histogram is called a counts image.
 - A 1-dimensional ENERGY histogram is called a counts spectrum.
@@ -99,7 +99,7 @@ Once you select your favorite source for inspection which will define the sky co
 - Date range (MET): 441763203, 457401604. LAT uses a very special time unit called the [Mission Elapsed Time (MET)](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Data/Time_in_ScienceTools.html) which is the number of seconds since midnight at the beginning of January 1, 2001, in the UTC system. The range given here corresponds to the first semester of 2015.
 - Energy range (MeV): 100, 300000. This is the normal energy range used in LAT analysis.
 
-Once you made your choices for selecting the photons, normally you would go to go to the NASA FSSC server website, input the selection criteria and download the files. However, in order to save time and bandwidth, all the necessary files have already been downloaded and are available in the folder `LAT_day01`. 
+Once you made your choices for selecting the photons, normally you would go to go to the NASA FSSC server website, input the selection criteria and download the files. However, in order to save time and bandwidth, all the necessary files have already been downloaded and are available in the folder `LAT_day01` in the VM. 
 
 
 ## Data files available in the VM

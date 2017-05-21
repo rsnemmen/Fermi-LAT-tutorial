@@ -92,7 +92,7 @@ This hands-on activity will make considerable use of Python and Linux. If you ar
 
 - [ ] GRB tutorial
 - [ ] reproducing the tentative dark matter line from the Galactic Center
-- [ ] upload data files required for activity on figshare
+- [x] upload data files required for activity on figshare
 
 # Contact 
 
