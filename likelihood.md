@@ -1,5 +1,19 @@
-Likelihood analysis: create sed for PG1553, reproducing old result from collaboration
+Likelihood analysis
 ============================
+
+create sed for PG1553, reproducing old result from collaboration
+
+# Overview
+
+A number of steps are necessary to fit a source's spectra; these are described in detail below.
+
+1. Select the data. The data from a substantial spatial region around the source(s) being analyzed must be used because of the overlapping of the point spread functions of nearby sources.
+2. Select the model. This model includes the position of the source(s) being analyzed, the position of nearby sources, a model of the diffuse emission, the functional form of the source spectra, and values of the spectral parameters. In fitting the source(s) of interest, you will let the parameters for these sources vary, but because the region around these sources includes counts from nearby sources in which you are not interested, you might also let the parameters from these nearby sources vary.
+3. Precompute a number of quantities that are part of the likelihood computation. As the parameter values are varied in searching for the best fit, the likelihood is calculated many times. While not strictly necessary, precomputing a number of computation-intensive quantities will greatly speed up the fitting process.
+4. Finally, perform the actual fit. The parameter space can be quite large—the spectral parameters from a number of sources must be fit simultaneously—and therefore the likelihood tools provide a choice of three 'optimizers' (section 7.8) to maximize the likelihood efficiently. Fitting requires repeatedly calculating the likelihood for different trial parameter sets until a value sufficiently near the maximum is found; the optimizers guide the choice of new trial parameter sets to converge efficiently on the best set. The variation of the likelihood in the vicinity of the maximum can be related to the uncertainties on the parameters, and therefore these optimizers estimate the parameter uncertainties.
+
+
+
 
 test installation: `enrico_setupcheck`
 
