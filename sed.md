@@ -1,16 +1,19 @@
 Generate SED
 ==============
 
-In this hands-on activity, you will learn how to produce a sed for PG1553, reproducing old result from collaboration
+Now you will learn how to produce a spectral energy distribution (aka SED) for the blazar PG 1553+113. A SED is simply a plot of flux or luminosity as a function of energy or wavelength. SEDs can teach you a lot about the physical processes responsible for the emission in the source. 
 
+By following this tutorial, you will reproduce an [old result from the LAT collaboration](http://adsabs.harvard.edu/abs/2010ApJ...708.1310A). You will be able to compare the results of your analysis with those published in that paper.
 
 # SED
 
+In the terminal, type the following commands to create a directory that will hold the results from this analysis:
+
 ```shell
-cd ~/day02
+cd ~/LAT_day02
 mkdir sed
-cd spectrum
-cp pg1553.conf events.txt ~/day02/sed
+cd sed
+cp ~/flux/pg1553.conf ~/flux/events.txt . # copy previously generated conf. file and events list
 ```
 
 edit conf file

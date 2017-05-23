@@ -143,7 +143,7 @@ You can explore the `PG1553_PowerLaw2_model.xml` output file with a text editor.
 
 # Perform the likelihood fit
 
-This is where the magic happens. The `enrico_sed` tool will take care of executing all the steps necessary for you to get a global likelihood fit and find the best-fit parameters by minimizing the likelihood function. `enrico_sed` will look into the options you have selected in `pg1553.conf` and call the following ScienceTool tasks:
+This is where the magic happens. The `enrico_sed` tool will take care of executing all the steps necessary for you to get a global likelihood fit and find the best-fit parameters by minimizing the likelihood function. `enrico_sed` will look into the options you have selected in `pg1553.conf` and call the following ScienceTool tasks (here is an [overview of the LAT analysis tools](https://www.slac.stanford.edu/exp/glast/wb/test/pages/sciTools_overview/ovrvw_latDataAnalysis.html)):
 
 1. `gtselect`: Perform event selection (ROI, energy cuts)
 2. `gtmktime`: Perform time selection based on spacecraft file, getting GTIs
@@ -161,6 +161,7 @@ To run the likelihood maximization just issue in the terminal:
 You will need to be patient because this will take quite a while. On my 2015 MacBook running the analysis in the VM, this took about 50 minutes to complete. Some possibilities of things to do while you wait:
 
 - go get some water or coffee
+- google for radiative processes in blazars
 - come see our computer cluster at the second floor of IAG
 - discuss gamma-ray astrophysics with your colleagues
 
@@ -178,13 +179,13 @@ Open the file `PG1553_PowerLaw2_239557418_334165418_100_300000_spectrum.results`
 - What is the flux? What do you think are the units?
 - What is the *approximate* statistical significance of the presence of a point source in the location of this blazar, in standard deviations? Is the source statistically significant against background?
 
-## exercise 3: plot count maps, model map and residuals
+## Exercise 3: plot count maps, model map and residuals
 
 The observed counts map is available in the file  `PG1553_spectrum_CountMap.fits` and the model counts map is in `PG1553_spectrum_ModelMap.fits`. The residual counts map resulting from the subtraction of the model map and the observed map is in `PG1553_Residual_Model_cmap.fits`. 
 
 Open and inspect these three FITS files with `ds9` or IPython. Do you think your model accounts well for the observed photons? Why?
 
-## Exercise 4 (optional)
+## Exercise 4 (optional): Deciding between competing models
 
 You can use `enrico_testmodel` to compute the log(likelihood) of the `PowerLaw`, `LogParabola` and `PLExpCutoff` models. An ascii file is then produced in the Spectrum folder with the value of the log(likelihood) for each model. Use the Wilk’s theorem to decide which model best describes the data.
 
