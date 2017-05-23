@@ -176,17 +176,20 @@ Open the file `PG1553_PowerLaw2_239557418_334165418_100_300000_spectrum.results`
 
 - What is the resulting spectral index and uncertainty? 
 - What is the flux? What do you think are the units?
-- What is the *approximate* statistical significance of the presence of a point source in the location of this blazar, in standard deviations?
+- What is the *approximate* statistical significance of the presence of a point source in the location of this blazar, in standard deviations? Is the source statistically significant against background?
 
 ## exercise 3: plot count maps, model map and residuals
 
-is the fit good?
-![](./figures/cmap,modelmap,residuals.png)
-residuals look good?
+The observed counts map is available in the file  `PG1553_spectrum_CountMap.fits` and the model counts map is in `PG1553_spectrum_ModelMap.fits`. The residual counts map resulting from the subtraction of the model map and the observed map is in `PG1553_Residual_Model_cmap.fits`. 
 
-## exercise
-how to decide which model is better?
+Open and inspect these three FITS files with `ds9` or IPython. Do you think your model accounts well for the observed photons? Why?
 
-explain meaning of spectrum
+## Exercise 4 (optional)
 
+You can use `enrico_testmodel` to compute the log(likelihood) of the `PowerLaw`, `LogParabola` and `PLExpCutoff` models. An ascii file is then produced in the Spectrum folder with the value of the log(likelihood) for each model. Use the Wilk’s theorem to decide which model best describes the data.
+
+
+- - - 
+
+[Solutions to exercises](./likelihood-solutions.md).
 
