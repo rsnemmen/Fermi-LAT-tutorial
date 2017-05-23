@@ -28,7 +28,7 @@ First of all, let’s test Enrico’s installation. Open a terminal and type:
 
 Everything should go well because we are running the activity in the VM, where Enrico is pre-installed. Now that you’ve checked that everything is in place, let’s get the data you will analyze.
 
-# Getting the data
+# Get the data
 
 Let’s extract the events for a region of radius 15˚ around PG 1553 in the time range 2008-08-05 to 2009-02-21. These are the parameters that you will use for the exercise: 
 ![](./figures/pg1553_query.png)
@@ -120,6 +120,8 @@ This tool will automatically add the following sources to the xml source model f
 - The galactic (`GalDiffModel`) and isotropic (`IsoDiffModel`) diffuse components that are the dominant background sources in most LAT analysis.
 - All the LAT sources from the 4-year catalog (3FGL) that are inside the ROI. The spectral parameters of the sources within 3 degrees of our source are left free so they can be fit simultaneously with our source, whereas those further away are fixed to their catalog values.
 
+- - - 
+**Create sources model**
 
 ```
 [fermi@localhost flux]$ enrico_xml pg1553.conf 
@@ -134,27 +136,35 @@ Iso model file  /home/fermi/enrico/Data/diffuse/iso_P8R2_SOURCE_V6_v06.txt
 Galactic model file  /home/fermi/enrico/Data/diffuse/gll_iem_v06.fits
 [Message]: write the Xml file in /home/fermi/day02/flux/PG1553_PowerLaw2_model.xml
 ``` 
+- - - 
 
-You can explore the PG1553+113_PowerLaw2_model.xml output file with a text editor, where you will find a source xml environment for each of the sources. Additionally, the Science Tools provide the modeleditor command, which allows you to modify the model from a GUI.
+You can explore the `PG1553_PowerLaw2_model.xml` output file with a text editor. 
 
 
-# simple likelihood
+# Perform the likelihood fit
 
-enrico_sed pg1553.conf
-this will take a long time
-while it runs, go get some water
-discuss Fermi science with your colleagues
-...
+This is where the magic happens. The `enrico_sed` tool will take care of executing all the steps necessary for you to get a global likelihood fit and find the best-fit parameters by minimizing the likelihood function. `enrico_sed` will look into the options you have selected in `pg1553.conf` and call the following ScienceTool tasks:
 
-on my computer: 
-started 16:48
-finished 17:45
-1 hour!
+1. `gtselect`: Perform event selection (ROI, energy cuts)
+2. `gtmktime`: Perform time selection based on spacecraft file, getting GTIs
+3. `gtbin`: Bin the data, computes counts map
+4. `gtltcube`: Perform the calculation of the livetime cube. This is the most computationally intensive step, taking.
+5. `gtexpcube2`: Use the previously generated livetime cube and apply it to your ROI to obtain an exposure cube.
+6. `gtsrcmaps`: Create model counts maps for each of the sources in the source model catalog. This is used to speed up the likelihood calculation of `gtlike`.
+7. `gtlike`: Maximize the likelihood function numerically and get initial estimate of parameters
+8. Optimize fit: improve parameter estimate
 
-Here is the [output from `enrico_sed`](./enrico_sed_output.txt).
+To run the likelihood maximization just issue in the terminal:
 
-while the analysis run...
-explain all the tools that will be called
+    enrico_sed pg1553.conf
+
+You will need to be patient because this will take quite a while. On my 2015 MacBook running the analysis in the VM, this took about 50 minutes to complete. Some possibilities of things to do while you wait:
+
+- go get some water or coffee
+- come see our computer cluster at the second floor of IAG
+- discuss gamma-ray astrophysics with your colleagues
+
+After the analysis finishes, you should get something similar to [this output from `enrico_sed`](./enrico_sed_output.txt).
 
 best-fit parameters
 
