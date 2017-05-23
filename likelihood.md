@@ -105,7 +105,7 @@ where *dN/dE* is the monochromatic photon flux, *gamma* is the spectral index.
 - Time is give in MET
 - Energy is given in MeV
 - ROI size is given in degrees
-- The redshift of this blazar is *z*=0.36. Because it is reasonably far away, gamma-rays will interact with lower energy photons in the [extragalactic background light (EBL)](https://www.universetoday.com/wp-content/uploads/hess_jet_quasar.jpg), pair-produce, and the resulting spectrum we will measure is not exactly a power-law but is attenuated at the high-energy end. We will see this clearly in the next session.
+- The redshift of this blazar is *z*=0.36. This turns out to be important, as we will see in the [next activity](./sed.md). 
 
 If you want, you can edit this config file by hand to make further adjustments.
 
