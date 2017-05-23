@@ -16,7 +16,7 @@ A number of [steps](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/
 
 Thus likelihood spectral fitting provides the best fit parameter values and their uncertainties. 
 
-[comment]: <> (But is this a good fit? When χ2 is a valid statistic, then we know that the value of χ2 is drawn from a known distribution, and we can use the probability of obtaining the observed value as a goodness-of-fit measure. When there are many degrees of freedom (i.e., the number of energy channels minus the number of fitted parameters) then we expect the χ2 per degree of freedom to be ~1 for a good fit. However, when χ2 is not a valid statistic, we usually do not know the distribution from which the maximum likelihood value is drawn, and therefore we do not have a goodness-of-fit measure.) 
+[comment]: <> (But is this a good fit? When χ2 is a valid statistic, then we know that the value of χ2 is drawn from a known distribution, and we can use the probability of obtaining the observed value as a goodness-of-fit measure. When there are many degrees of freedom i.e., the number of energy channels minus the number of fitted parameters then we expect the χ2 per degree of freedom to be ~1 for a good fit. However, when χ2 is not a valid statistic, we usually do not know the distribution from which the maximum likelihood value is drawn, and therefore we do not have a goodness-of-fit measure.) 
 
 # Using `Enrico`
 
@@ -164,13 +164,22 @@ You will need to be patient because this will take quite a while. On my 2015 Mac
 - come see our computer cluster at the second floor of IAG
 - discuss gamma-ray astrophysics with your colleagues
 
-After the analysis finishes, you should get something similar to [this output from `enrico_sed`](./enrico_sed_output.txt).
+After the analysis finishes, you should get something similar to [this output from `enrico_sed`](./enrico_sed_output.txt). 
 
-best-fit parameters
+## Exercise 1
 
-results file
+Inspect the log generated on the terminal by `enrico_sed` and identify the different tasks that are being performed. 
 
-## exercise: plot count maps, model map and residuals
+## Exercise 2
+
+Open the file `PG1553_PowerLaw2_239557418_334165418_100_300000_spectrum.results`—which holds the results of the likelihood fit—in a text editor and answer the following questions:
+
+- What is the resulting spectral index and uncertainty? 
+- What is the flux? What do you think are the units?
+- What is the *approximate* statistical significance of the presence of a point source in the location of this blazar, in standard deviations?
+
+## exercise 3: plot count maps, model map and residuals
+
 is the fit good?
 ![](./figures/cmap,modelmap,residuals.png)
 residuals look good?
