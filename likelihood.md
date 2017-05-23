@@ -1,53 +1,72 @@
-Likelihood analysis
-============================
+Likelihood analysis: Getting a flux
+======================================
 
-create sed for PG1553, reproducing old result from collaboration
+In this hands-on activity, you will learn how to produce get the parameters of a spectral model—let’s say, flux and spectral index—for the blazar PG1553+113 observed with *Fermi* LAT. You  will perform a full likelihood analysis for PG1553+113. 
+
+The results from the analysis of this dataset were [published by the Fermi LAT Collaboration](http://adsabs.harvard.edu/abs/2010ApJ...708.1310A). So you will be able to compare the results of your analysis with those published in that paper.
 
 # Overview
 
-A number of steps are necessary to fit a source's spectra; these are described in detail below.
+A number of [steps](https://fermi.gsfc.nasa.gov/ssc/data/analysis/documentation/Cicerone/Cicerone_Likelihood/Likelihood_overview.html) are necessary to fit a source's spectra; these are described in detail below.
 
-1. Select the data. The data from a substantial spatial region around the source(s) being analyzed must be used because of the overlapping of the point spread functions of nearby sources.
-2. Select the model. This model includes the position of the source(s) being analyzed, the position of nearby sources, a model of the diffuse emission, the functional form of the source spectra, and values of the spectral parameters. In fitting the source(s) of interest, you will let the parameters for these sources vary, but because the region around these sources includes counts from nearby sources in which you are not interested, you might also let the parameters from these nearby sources vary.
-3. Precompute a number of quantities that are part of the likelihood computation. As the parameter values are varied in searching for the best fit, the likelihood is calculated many times. While not strictly necessary, precomputing a number of computation-intensive quantities will greatly speed up the fitting process.
-4. Finally, perform the actual fit. The parameter space can be quite large—the spectral parameters from a number of sources must be fit simultaneously—and therefore the likelihood tools provide a choice of three 'optimizers' (section 7.8) to maximize the likelihood efficiently. Fitting requires repeatedly calculating the likelihood for different trial parameter sets until a value sufficiently near the maximum is found; the optimizers guide the choice of new trial parameter sets to converge efficiently on the best set. The variation of the likelihood in the vicinity of the maximum can be related to the uncertainties on the parameters, and therefore these optimizers estimate the parameter uncertainties.
+1. *Select the data.* The data from a reasonably large spatial region around the source(s) being analyzed must be used because of the overlapping of the point spread functions (PSF) of nearby sources.
+2. *Select the model*. This model includes the position of the source(s) being analyzed, the position of nearby sources, a model of the diffuse emission, the functional form of the source spectra, and values of the spectral parameters. In fitting the source(s) of interest, you will let the parameters for these sources vary, but because the region around these sources includes counts from nearby sources in which you are not interested, you might also let the parameters from these nearby sources vary.
+3. *Precompute a number of quantities that are part of the likelihood computation*. As the parameter values are varied in searching for the best fit, the likelihood is calculated many times. While not strictly necessary, precomputing a number of computation-intensive quantities will greatly speed up the fitting process.
+4. Finally, *perform the fit*. The parameter space can be quite large—the spectral parameters from a number of sources must be fit simultaneously—and therefore the likelihood tools provide a choice of three numerical “optimizers” to maximize the likelihood efficiently. Fitting requires repeatedly calculating the likelihood for different trial parameter sets until a value sufficiently near the maximum is found. The variation of the likelihood in the vicinity of the maximum can be related to the uncertainties on the parameters, and therefore these optimizers estimate the parameter uncertainties.
 
+Thus likelihood spectral fitting provides the best fit parameter values and their uncertainties. 
 
+[comment]: <> (But is this a good fit? When χ2 is a valid statistic, then we know that the value of χ2 is drawn from a known distribution, and we can use the probability of obtaining the observed value as a goodness-of-fit measure. When there are many degrees of freedom (i.e., the number of energy channels minus the number of fitted parameters) then we expect the χ2 per degree of freedom to be ~1 for a good fit. However, when χ2 is not a valid statistic, we usually do not know the distribution from which the maximum likelihood value is drawn, and therefore we do not have a goodness-of-fit measure.) 
 
+# Using `Enrico`
 
-test installation: `enrico_setupcheck`
+We will use the `Enrico` python tools instead of using directly the ScienceTools. Enrico is very convenient because it hides away the complexity of the analysis that is going on under the hood. Enrico takes care of calling all the appropriate ScienceTools in the correct order.
 
+First of all, let’s test Enrico’s installation. Open a terminal and type:
 
-same activity as the MP school
+    enrico_setupcheck
 
-# get data
+Everything should go well because we are running the activity in the VM, where Enrico is pre-installed. Now that you’ve checked that everything is in place, let’s get the data you will analyze.
 
-data extracted using the following parameters:
+# Getting the data
+
+Let’s extract the events for a region of radius 15˚ around PG 1553 in the time range 2008-08-05 to 2009-02-21. These are the parameters that you will use for the exercise: 
 ![](./figures/pg1553_query.png)
 
-15 deg radius
+Normally you would go to go to the NASA FSSC server website, input the selection criteria and download the files. However, in order to save time and bandwidth, *all the necessary files have already been downloaded and are available in the VM* in the folder `LAT_day02/data`. The data files are the following:
 
-available in directory `day02/data`
+- `pg1553_PH0#.fits`: events files
+- `pg1553_SC00.fits`: spacecraft file
 
 # Create a configuration file
 
-open terminal
+In the terminal, now type
 
 ```shell
-cd day02
-mkdir spectrum
-cd spectrum
+cd ~/LAT_day02
+mkdir flux
+cd flux
 ```
 
-Parameters below from http://fermi-hero.readthedocs.io/en/latest/spectrum/index.html#make-a-config-file
-z=0.36
+You are now in the directory which will hold the results of the likelihood analysis. 
 
-create config file:
+Since there is more than one events file, you will need to provide an input file list in your analysis below. This text file can be generated by typing:
+
+```shell
+ls ~/LAT_day02/data/pg1553_PH* > events.txt
+```
+
+`Enrico` uses [configuration files](http://enrico.readthedocs.io/en/latest/configfile.html) to run the analysis. You can use the `enrico_config` tool to quickly make a config file called `pg1553.conf`. It will ask you for the required options and copy the rest from a default config file located at `enrico/data/config/default.conf`:
+
+[comment]: <> (Parameters below from http://fermi-hero.readthedocs.io/en/latest/spectrum/index.html#make-a-config-file)
+
+- - - 
+**Create configuration file**
 
 ```
-[fermi@localhost spectrum]$ enrico_config pg1553.conf
+[fermi@localhost flux]$ enrico_config pg1553.conf
 [Message]: Please provide the following required options [default] :
-Output directory [/home/fermi/day02/spectrum] : 
+Output directory [/home/fermi/day02/flux] : 
 Target Name : PG1553  
 Right Ascension: 238.93
 Declination: 11.19
@@ -73,14 +92,37 @@ Corresponding IRFs	=	('P8R2_SOURCE_V6', ['BACK', 'FRONT'])
 Is this ok? [y] : 
 Corresponding zmax =  90
 ```
+- - - 
+Some notes:
+
+- Always give the full path for the files in enrico
+- We are using the `PowerLaw2` model--a simple power-law spectrum with the form
+
+`dN/dE \propto E^gamma`
+
+where *dN/dE* is the monochromatic photon flux, *gamma* is the spectral index. 
+
+- Time is give in MET
+- Energy is given in MeV
+- ROI size is given in degrees
+- The redshift of this blazar is *z*=0.36. Because it is reasonably far away, gamma-rays will interact with lower energy photons in the [extragalactic background light (EBL)](https://www.universetoday.com/wp-content/uploads/hess_jet_quasar.jpg), pair-produce, and the resulting spectrum we will measure is not exactly a power-law but is attenuated at the high-energy end. We will see this clearly in the next session.
+
+If you want, you can edit this config file by hand to make further adjustments.
 
 
-# create XML (what this means for the analysis)
+# Generate a source model: XML file
 
-create XML:
+The ScienceTools need a source model written in the xml format. You can run `enrico_xml` to make such model of the sky and store it into a xml file which will be used for the analysis. The options for this step are directly provided in the config file. For the `enrico_xml` tool, the relevant options are in the `[space]` and `[target]` sections. The out file is given by `[file]/xml` field.
+
+This tool will automatically add the following sources to the xml source model file:
+
+- Your target source
+- The galactic (`GalDiffModel`) and isotropic (`IsoDiffModel`) diffuse components that are the dominant background sources in most LAT analysis.
+- All the LAT sources from the 4-year catalog (3FGL) that are inside the ROI. The spectral parameters of the sources within 3 degrees of our source are left free so they can be fit simultaneously with our source, whereas those further away are fixed to their catalog values.
+
 
 ```
-[fermi@localhost spectrum]$ enrico_xml pg1553.conf 
+[fermi@localhost flux]$ enrico_xml pg1553.conf 
 use the default location of the catalog
 use the default catalog
 Use the catalog :  /home/fermi/enrico/Data/catalog/gll_psc_v16.fit
@@ -90,8 +132,11 @@ Add  41  sources in the ROI of  17.0 ( 15.0 + 2 ) degrees
 0  source(s) is (are) extended
 Iso model file  /home/fermi/enrico/Data/diffuse/iso_P8R2_SOURCE_V6_v06.txt
 Galactic model file  /home/fermi/enrico/Data/diffuse/gll_iem_v06.fits
-[Message]: write the Xml file in /home/fermi/day02/spectrum/PG1553_PowerLaw2_model.xml
+[Message]: write the Xml file in /home/fermi/day02/flux/PG1553_PowerLaw2_model.xml
 ``` 
+
+You can explore the PG1553+113_PowerLaw2_model.xml output file with a text editor, where you will find a source xml environment for each of the sources. Additionally, the Science Tools provide the modeleditor command, which allows you to modify the model from a GUI.
+
 
 # simple likelihood
 

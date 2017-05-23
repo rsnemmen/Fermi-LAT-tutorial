@@ -1,6 +1,9 @@
 Generate SED
 ==============
 
+In this hands-on activity, you will learn how to produce a sed for PG1553, reproducing old result from collaboration
+
+
 # SED
 
 ```shell
