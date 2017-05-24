@@ -101,11 +101,19 @@ Info in <TCanvas::SaveSource>: C++ Macro file: /home/fermi/day02/sed/Spectrum/SE
 Info in <TCanvas::Print>: eps file /home/fermi/day02/sed/Spectrum/SED_PG1553_PowerLaw2.eps has been created
 ```
 
-You should get the following plot as a result—which can be found in figure `./Spectrum/SED_PG1553_PowerLaw2.png`:
-![](./figures/sed.png)
+## Exercise 1: SED plot
 
-The redshift of this blazar is *z*=0.36. This turns out to be important. Because PG 1553 is relatively far away, gamma-rays will interact with lower energy photons in the [extragalactic background light (EBL)](https://www.universetoday.com/wp-content/uploads/hess_jet_quasar.jpg), pair-produce, and the resulting spectrum we will measure is not exactly a power-law but is attenuated at the high-energy end. This is the reason for the attenuation at energies >50 GeV. If you are curious about the EBL and its imprint on gamma-ray spectra, you should have a look at this very cool [*Science* paper published by the LAT Collaboration](https://www.dropbox.com/s/u0slge2wqwg5kca/ackermann2012.pdf?dl=0) ([try this if the previous link is broken](http://science.sciencemag.org/content/338/6111/1190/tab-pdf)).
+Open the file `./Spectrum/SED_PG1553_PowerLaw2.png` and inspect this plot. 
 
-## Exercise
+1. Is the measured SED consistent with the power-law model as we chose? 
+2. Compare your result with Figure 1 of [Abdo et al. 2010 ApJ](http://adsabs.harvard.edu/abs/2010ApJ...708.1310A)—the result published by the LAT Collaboration using the first few months of observations of the telescope. Are the SEDs consistent with each other?
+3. Do you notice anything funny going on with your fit? Remember that you fitted a power-law model. Pay attention to the highest energies measured.
+
+
+## Exercise 2: counts spectrum
 
 Open the file `./Spectrum/SED_PG1553_PowerLaw2_CountsPlot.png` and inspect this plot. Notice the contribution of our dear blazar compared to all the other sources. Why do you think this count spectrum is different compared to the SED plot we saw before? (e.g. why is it not a perfect power-law extending to lower energies as we should expect?)
+
+- - - 
+
+[Solutions to exercises](./sed-solutions.md).
