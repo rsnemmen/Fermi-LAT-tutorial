@@ -116,4 +116,6 @@ Open the file `./Spectrum/SED_PG1553_PowerLaw2_CountsPlot.png` and inspect this 
 
 - - - 
 
+Next: [generating a light curve](./lc.md).
+
 [Solutions to exercises](./sed-solutions.md).

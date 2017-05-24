@@ -192,5 +192,7 @@ You can use `enrico_testmodel` to compute the log(likelihood) of the `PowerLaw`,
 
 - - - 
 
+Next: [generate a spectral energy distribution](./sed.md).
+
 [Solutions to exercises](./likelihood-solutions.md).
 
