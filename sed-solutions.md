@@ -8,7 +8,7 @@ You should get the following plot as a result—which can be found in figure `./
 
 1. Is the measured SED consistent with the power-law model as we chose? 
 
-Yes, within the uncertainties.
+Yes, within the uncertainties, in the energy range 100 MeV—100 GeV. But notice the funny point at 200 GeV. More about this in point 3 below.
 
 2. Compare your result with Figure 1 of [Abdo et al. 2010 ApJ](http://adsabs.harvard.edu/abs/2010ApJ...708.1310A)—the result published by the LAT Collaboration using the first few months of observations of the telescope. Are the SEDs consistent with each other?
 
