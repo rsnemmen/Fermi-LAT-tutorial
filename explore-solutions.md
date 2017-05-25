@@ -26,7 +26,7 @@ Note that we plot the histogram with both axes in log-scale in this example.
 # Exercise 2
 
 ```python
-hist(log10(events['TIME']),100)
+hist(events['TIME'],100)
 xlabel('Time (s)')
 ```
 
