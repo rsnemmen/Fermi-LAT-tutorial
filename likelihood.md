@@ -66,7 +66,7 @@ ls ~/LAT_day02/data/pg1553_PH* > events.txt
 ```
 [fermi@localhost flux]$ enrico_config pg1553.conf
 [Message]: Please provide the following required options [default] :
-Output directory [/home/fermi/day02/flux] : 
+Output directory [/home/fermi/LAT_day02/flux] : 
 Target Name : PG1553  
 Right Ascension: 238.93
 Declination: 11.19
@@ -78,7 +78,7 @@ Generic is design to allow the user to fit with non-supported models
 EBL absorption can be added for PowerLaw2, LogParabola, PLExpCutoff
 Spectral Model [PowerLaw] : PowerLaw2
 ROI Size [15] : 
-FT2 file [/home/fermi/enrico/Data/download/lat_spacecraft_merged.fits] : /home/fermi/day02/data/pg1553_SC00.fits
+FT2 file [/home/fermi/enrico/Data/download/lat_spacecraft_merged.fits] : /home/fermi/LAT_day02/data/pg1553_SC00.fits
 FT1 list of files [/home/fermi/enrico/Data/download/events.lis] : events.txt
 tag [LAT_Analysis] : spectrum
 Start time [239557418] : 
@@ -134,7 +134,7 @@ Add  41  sources in the ROI of  17.0 ( 15.0 + 2 ) degrees
 0  source(s) is (are) extended
 Iso model file  /home/fermi/enrico/Data/diffuse/iso_P8R2_SOURCE_V6_v06.txt
 Galactic model file  /home/fermi/enrico/Data/diffuse/gll_iem_v06.fits
-[Message]: write the Xml file in /home/fermi/day02/flux/PG1553_PowerLaw2_model.xml
+[Message]: write the Xml file in /home/fermi/LAT_day02/flux/PG1553_PowerLaw2_model.xml
 ``` 
 - - - 
 
