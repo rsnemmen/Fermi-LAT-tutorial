@@ -49,13 +49,8 @@ The [Fermi Science Support Center web pages](https://fermi.gsfc.nasa.gov/ssc/) c
 
 An alternative set of Python wrappers is [FermiPy](http://fermipy.readthedocs.io/en/latest/) which provides similar functionality and convenience as `Enrico`. 
 
-## If you want to install the analysis tools on your own Linux or MacOS system instead of using the VM
+By the way, if you want to install the analysis tools on your own Linux or MacOS system instead of using the VM, [have a look here](./pre-requisites.md#if-you-want-to-install-the-analysis-tools-on-your-own-linux-or-macos-system-instead-of-using-the-vm).
 
-Here are some directions for those that would like to install the analysis software directly in their OS instead of using our pre-packaged VM. 
-
-In order to get the ScienceTools and Enrico working together, you need to setup some environment variables after installing the software. If you are curious, please have a look at the `.bashrc` init file located in your home directory in the VM.
-
-Also, note that the ScienceTools have their own Python distribution which conflicts with any pre-existing Python installed on your system, hence the need for setting up the environment variables properly. Keep that in mind.
 
 
 # Types of *Fermi* LAT Data files

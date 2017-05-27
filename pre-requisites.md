@@ -7,6 +7,13 @@ All the analysis software and data files required for this hands-on activity are
 
 In order to run the VM, you will need to [download and install the VirtualBox binaries](https://www.virtualbox.org/wiki/Downloads) appropriate for your OS. 
 
+- [Download links](#download-links)
+- [Instructions for installing VM](instructions-for-installing-vm) and [potential VM issues](#some-potential-vm-issues)
+- [Introduction to Python and Linux](#python-and-linux-background)
+- [Want to use your own tools instead of the VM?](#if-you-want-to-install-the-analysis-tools-on-your-own-linux-or-macos-system-instead-of-using-the-vm)
+
+
+
 # Download links
 
 We recommend that you start downloading early our virtual machine, given the large file size. 
@@ -54,3 +61,26 @@ This hands-on activity will make considerable use of Python and Linux. If you ar
 - [Lectures on scientific computing with Python](https://github.com/jrjohansson/scientific-python-lectures)
 - [UNIX tutorial for beginners](http://www.ee.surrey.ac.uk/Teaching/Unix/)
 
+# If you want to install the analysis tools on your own Linux or MacOS system instead of using the VM
+
+Here are some directions for those that would like to run tutorial using the analysis software installed in their own OS instead of using our pre-packaged VM. You will need to:
+
+1. Install all the analysis software separately
+2. Download the supporting data files
+
+## Software required
+
+The software you will need to install are:
+
+- [`Fermi ScienceTools`](https://fermi.gsfc.nasa.gov/ssc/data/analysis/software/)
+- [SAOImage DS9](http://ds9.si.edu/site/Home.html)
+- [Enrico](http://enrico.readthedocs.io/en/latest/index.html
+) 
+
+In order to get the ScienceTools and Enrico working together, you need to setup some environment variables after installing the software. If you are curious, please have a look at the `.bashrc` init file located in your home directory in the VM.
+
+Also, note that the ScienceTools have their own Python distribution which conflicts with any pre-existing Python installed on your system, hence the need for setting up the environment variables properly. Keep that in mind.
+
+## Data files for observations
+
+All the data files required for the tutorial are pre-installed in the VM. However, if you are *not* using the VM to run the activity, you can download the data files [here](https://figshare.com/articles/Fermi_LAT_Hands-on_activity_Sao_Paulo_CTA_School_2017/5027513).
