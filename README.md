@@ -14,13 +14,13 @@ This activity has a total duration of 4 hours distributed in two days. Given the
 
 ## Day one
 
-- 4:30-5:00: [Introduction, overview of activities and tools (slides)](./day01-intro_slides.pdf)
+- 4:30-5:00: [Introduction, overview of activities and tools (slides)](https://speakerdeck.com/rsnemmen/analysis-of-fermi-lat-data-hands-on-day-1)
 - 5:00-5:30: [Obtaining and preparing LAT data for your favorite source](./prepare.md)
 - 5:30-6:30: [Exploring LAT data: Plotting the counts map](./explore.md)
 
 ## Day two
 
-- 4:30-5:00: Overview of activity, basic theory of spectral modeling: [slides](./day02-intro_slides.pdf), [jupyter notebook](./fermi_likelihood_lecture.ipynb)
+- 4:30-5:00: Overview of activity, basic theory of spectral modeling: [slides](https://speakerdeck.com/rsnemmen/analysis-of-fermi-lat-data-day-2), [jupyter notebook](./fermi_likelihood_lecture.ipynb)
 - 5:00-5:30: [Getting a flux: Likelihood analysis](./likelihood.md)
 - 5:30-6:30: [Creating a spectrum (SED)](./sed.md)
 - Bonus: [Producing a light-curve](./lc.md)
