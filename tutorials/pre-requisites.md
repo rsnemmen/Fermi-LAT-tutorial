@@ -8,7 +8,7 @@ All the analysis software and data files required for this hands-on activity are
 In order to run the VM, you will need to [download and install the VirtualBox binaries](https://www.virtualbox.org/wiki/Downloads) appropriate for your OS. 
 
 - [Download links](#download-links)
-- [Instructions for installing VM](instructions-for-installing-vm) and [potential VM issues](#some-potential-vm-issues)
+- [Instructions for installing VM](#instructions-for-installing-vm) and [potential VM issues](#some-potential-vm-issues)
 - [Introduction to Python and Linux](#python-and-linux-background)
 - [Want to use your own tools instead of the VM?](#if-you-want-to-install-the-analysis-tools-on-your-own-linux-or-macos-system-instead-of-using-the-vm)
 
@@ -41,11 +41,11 @@ After downloading the VM file, follow the instructions below.
 4. Click on `Continue` and on the next screen click on `Import`. This step may take a few minutes.
 5. Once you do that, you should see a window that looks something like the following. Click `Start` to start up the VM. You should see a window pop up, and see Linux starting up inside that window.
 
-![](./figures/virtualbox.png "VirtualBox window listing the VM after successfull import")
+![](../figures/virtualbox.png "VirtualBox window listing the VM after successfull import")
 
 6. In the end, you should have a window that looks like this. ~~Contact the organizers for the password~~ The password is `saopaulo`. You are good to go!
 
-![](./figures/welcome_screen.png "VM after booting")
+![](../figures/welcome_screen.png "VM after booting")
 
 # Some potential VM issues
 

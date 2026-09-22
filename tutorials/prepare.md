@@ -127,17 +127,17 @@ Now we will learn how to extract and download the LAT data from the FSSC server.
 * LAT data type: "Photon"
 * Spacecraft data: "checked"
 
-![](./figures/FSSC_query.png "FSSC query website")
+![](../figures/FSSC_query.png "FSSC query website")
 
 3. Click on the 'Start Search' button. The 'Query Submitted' webpage will be displayed and provide an estimate of the time to complete the query, as well as a link to the results webpage.
 
-![](./figures/query_submitted.png)
+![](../figures/query_submitted.png)
 
 We suggest that you capture the information reported on the query page in a text file accompanying your data. While it can be retrieved through other means, having the information from your query easily accessible may ease certain portions of the analysis.
 
 When you go to this new webpage--'LAT Data Query Results'--you may be told that the query is not yet complete. This webpage will show you a link to where the results of your query can be found. When the query is complete, the data file list will include links to the files themselves.
 
-![](./figures/query_results.png)
+![](../figures/query_results.png)
 
 4. Download the spacecraft (pointing and livetime history) file and events data file to your working directory. The results page include convenient `wget` commands that you can copy and paste in the terminal window to download all the FITS files. 
 
@@ -154,7 +154,7 @@ Event files like are FITS files. For historical reasons, [FITS](https://en.wikip
 Let’s use a few different tools to explore the content of the events file for your selected source. We will first use `IPython` and the module `pyfits` to list the content of FITS files. [IPython](https://ipython.org) is a very popular environment for interactive scientific analysis. 
 
 First open a terminal:
-![](./figures/open_terminal.png)
+![](../figures/open_terminal.png)
 
 Issue the commands
 
@@ -164,7 +164,7 @@ ipython --pylab
 ```
 
 to open the IPython environment. The `--pylab` argument makes sure that convenient plotting modules are loaded on startup. You should see this:
-![](./figures/ipython.png)
+![](../figures/ipython.png)
 
 Let’s load the `pyfits` module to be able to handle FITS files: enter the command `import pyfits` in IPython. Now let’s get a summary of the FITS file structure:
 
@@ -172,7 +172,7 @@ Let’s load the `pyfits` module to be able to handle FITS files: enter the comm
     hdulist.info()
 
 where you replace the filename with the one corresponding to your favorite source. Replace `[SOURCE]` above with either [`vela`, `3c454` or `gc`](#data-files-available-in-the-vm). You should get something looking like the following output:
-![](./figures/pyfits_info.png)
+![](../figures/pyfits_info.png)
 
 So this event file contains an `EVENTS` table with 285902 events and a `GTI` (good time interval) table with 1702 GTIs. GTIs are needed to compute exposure. Exposure is needed to compute the flux of sources.
 
@@ -232,7 +232,7 @@ Now go ahead and close the FITS file: `hdulist.close()`
 In the last section we made a histogram of the photon zenith angle distribution and found a broad peak in the range 0 to 100 deg and a narrow peak around 113 deg.
 
 The narrow peak at a zenith angle of ~113˚ is due to “atmospheric gamma rays” as explained in the following Figure (which also explains what the zenith angle is):
-![](./figures/earth_limb_gammas.png)
+![](../figures/earth_limb_gammas.png)
 **Figure**: Schematic of Limb gamma-ray production by cosmic ray interactions in the Earth’s atmosphere, showing the definitions of the zenith angle (θz), the spacecraft rocking angle (θr) and the incidence angle (θ). [Reference](http://adsabs.harvard.edu/abs/2013arXiv1305.5597F).
 
 We are not interested in atmospheric gamma rays, only in gamma rays from astrophysical sources. To apply selection cuts that remove the atmospheric gammas we will use the `gtselect` and `gtmktime` tools from the Fermi ScienceTools. Running these two tools also serve other purposes such as e.g. selecting an event class (see [LAT Data Selection Recommendations](https://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/data_preparation.html) for more information).
@@ -317,7 +317,7 @@ Some notes:
 
 ## Exercise 3: Inspecting what `gtselect` and `gtmktime` did to the data
 
-Similarly to what we did in [exercise 2](#exercise-2), plot the histogram of zenith angles for the events in FITS file generated after running `gtmktime`. What do you notice in comparison to the histogram you plotted in exercise 2?
+Similarly to what we did in [exercise 2](#exercise-2-plot-the-photon-zenith-angle), plot the histogram of zenith angles for the events in FITS file generated after running `gtmktime`. What do you notice in comparison to the histogram you plotted in exercise 2?
 
 ## Exercise 4: number of events before and after
 
@@ -329,4 +329,4 @@ Compute the total number of events detected by LAT before the data cuts with `gt
 
 Now we move on to [exploring the data further and plotting images](./explore.md).
 
-[Solutions to exercises](./prepare-solutions.md).
+[Solutions to exercises](../solutions/prepare-solutions.md).

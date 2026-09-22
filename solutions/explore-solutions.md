@@ -19,7 +19,7 @@ yscale('log')
 xlabel('log10(Energy/MeV)')
 ```
 
-![](./figures/counts_spectrum.png)
+![](../figures/counts_spectrum.png)
 
 Note that we plot the histogram with both axes in log-scale in this example.
 
@@ -30,5 +30,5 @@ hist(events['TIME'],100)
 xlabel('Time (s)')
 ```
 
-![](./figures/counts_lightcurve.png)
+![](../figures/counts_lightcurve.png)
 

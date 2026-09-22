@@ -8,7 +8,7 @@ You will reproduce the gamma-ray flare observed with Fermi LAT in June 2015 and 
 # Get the data
 
 The data was extracted using the following parameters:
-![](./figures/3c279_query.png)
+![](../figures/3c279_query.png)
 
 These data spans about two weeks in the life of 3C 279. 
 
@@ -28,7 +28,7 @@ mkdir lc
 cd lc
 ```
 
-You should download the configuration file that will be used to generate the light curve. The [configuration file is available to download here](./lc.conf).
+Download the [configuration file](../examples/lc.conf) and save it as `lc.conf` in the VM analysis directory you just created, `~/LAT_day02/lc`, before running the commands below. On GitHub, download the raw file contents to save the configuration itself.
 
 ## Exercise 1: Inspect the configuration file
 
@@ -66,4 +66,4 @@ Compare the light curve you just generated with Figure 1 in [Paliya 2015 ApJ](ht
 
 ## Exercise 3
 
-Find the file `3C279_TS.png` which contains the time series of TS values. What is the peak statistical significance of the source over the period you considered? 
+Find the file `3C279_TS.png` which contains the time series of TS values. What is the peak statistical significance of the source over the period you considered?

@@ -16,7 +16,7 @@ Plot the histogram of the distribution of energies for the events in the events 
 - - - 
 
 You should get something that looks like this:
-![](./figures/counts_spectrum.png)
+![](../figures/counts_spectrum.png)
 
 Note that the counts spectrum for 3C 454.3 looks like a power-law. However, keep in mind that this is not the spectral energy distribution (energy flux x energy). Why? Because in order to have the SED we need the flux which is defined by
 
@@ -37,7 +37,7 @@ Plot the histogram of the time distribution for the events—the counts lightcur
 [comment]: <> (which is proportional to the event rate since we use equal-width time bins)
 
 You should get something similar to this plot:
-![](./figures/counts_lightcurve.png)
+![](../figures/counts_lightcurve.png)
 
 Notice how variable is the region we are observing. Also note that, at this point, we do not know what photons are coming from the source we are interested in, and photons are coming from background.
 
@@ -84,7 +84,7 @@ Let’s improve our image visualization. Do you see the gray buttons located in-
 - `zoom -> fit`
 
 You should end up with something that looks like the image below—obtained for the case of the Galactic Center:
-![](./figures/ds9.png)
+![](../figures/ds9.png)
 
 It is important to inspect your data prior to proceeding to verify that the contents are as you expect. A malformed data query or improper data selection can generate a non-circular region, or a file with zero events. By inspecting your data, you have an opportunity to detect such issues early in the analysis.
 
@@ -109,5 +109,5 @@ show()
 
 In the next session, we will learn to obtain actual fluxes and a energy spectrum from the sources we are interested. 
 
-[Solutions to exercises in this session](./explore-solutions.md).
+[Solutions to exercises in this session](../solutions/explore-solutions.md).
 

@@ -5,8 +5,10 @@ These are the tutorials for the hands on, practical session on the analysis of *
 
 This activity has a total duration of 4 hours distributed in two days. Given the somewhat short duration of these sessions, we will not have time to get into the details of all the fascinating science behind the analysis. The emphasis is on “getting your hands dirty” with the data. 
 
-- [Pre-requisites](./pre-requisites.md), including instructions for [downloading](./pre-requisites.md#download-links) and [installing](./pre-requisites.md#instructions-for-installing-vm) the VM
+- [Pre-requisites](./tutorials/pre-requisites.md), including instructions for [downloading](./tutorials/pre-requisites.md#download-links) and [installing](./tutorials/pre-requisites.md#instructions-for-installing-vm) the VM
 - [Tutorials](#tutorials)
+- [Solutions](#solutions)
+- [Repository layout](#repository-layout)
 - [Contact](#contact)
 
 
@@ -14,16 +16,36 @@ This activity has a total duration of 4 hours distributed in two days. Given the
 
 ## Day one
 
-- 4:30-5:00: [Introduction, overview of activities and tools (slides)](https://speakerdeck.com/rsnemmen/analysis-of-fermi-lat-data-hands-on-day-1)
-- 5:00-5:30: [Obtaining and preparing LAT data for your favorite source](./prepare.md)
-- 5:30-6:30: [Exploring LAT data: Plotting the counts map](./explore.md)
+- 4:30-5:00: Introduction, overview of activities and tools: [slides (PDF)](./slides/day01-intro_slides.pdf), [Speaker Deck](https://speakerdeck.com/rsnemmen/analysis-of-fermi-lat-data-hands-on-day-1)
+- 5:00-5:30: [Obtaining and preparing LAT data for your favorite source](./tutorials/prepare.md)
+- 5:30-6:30: [Exploring LAT data: Plotting the counts map](./tutorials/explore.md)
 
 ## Day two
 
-- 4:30-5:00: Overview of activity, basic theory of spectral modeling: [slides](https://speakerdeck.com/rsnemmen/analysis-of-fermi-lat-data-day-2), [jupyter notebook](./fermi_likelihood_lecture.ipynb)
-- 5:00-5:30: [Getting a flux: Likelihood analysis](./likelihood.md)
-- 5:30-6:30: [Creating a spectrum (SED)](./sed.md)
-- Bonus: [Producing a light-curve](./lc.md)
+- 4:30-5:00: Overview of activity, basic theory of spectral modeling: [slides (PDF)](./slides/day02-intro_slides.pdf), [Speaker Deck](https://speakerdeck.com/rsnemmen/analysis-of-fermi-lat-data-day-2), [jupyter notebook](./notebooks/fermi_likelihood_lecture.ipynb)
+- 5:00-5:30: [Getting a flux: Likelihood analysis](./tutorials/likelihood.md)
+- 5:30-6:30: [Creating a spectrum (SED)](./tutorials/sed.md)
+- Bonus: [Producing a light-curve](./tutorials/lc.md)
+- [Concluding slides (PDF)](./slides/conclusion.pdf)
+
+# Solutions
+
+- [Obtaining and preparing LAT data](./solutions/prepare-solutions.md)
+- [Exploring LAT data](./solutions/explore-solutions.md)
+- [Likelihood lecture notebook](./solutions/fermi_likelihood_lecture-solutions.ipynb)
+- [Likelihood analysis](./solutions/likelihood-solutions.md)
+- [Creating a spectrum (SED)](./solutions/sed-solutions.md)
+
+# Repository layout
+
+| Folder | Contents |
+| --- | --- |
+| [slides/](./slides/) | Introduction and concluding slides in PDF format |
+| [tutorials/](./tutorials/) | Pre-requisites and hands-on lessons |
+| [notebooks/](./notebooks/) | Student lecture notebooks |
+| [solutions/](./solutions/) | Exercise solutions, including the solutions notebook |
+| [examples/](./examples/) | Sample configuration and analysis output |
+| [figures/](./figures/) | Images shared by the tutorials, notebooks, and solutions |
 
 # Acknowledgements
 

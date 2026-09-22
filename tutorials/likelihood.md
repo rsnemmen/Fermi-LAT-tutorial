@@ -31,7 +31,7 @@ Everything should go well because we are running the activity in the VM, where E
 # Get the data
 
 Let’s extract the events for a region of radius 15˚ around PG 1553 in the time range 2008-08-05 to 2009-02-21. These are the parameters that you will use for the exercise: 
-![](./figures/pg1553_query.png)
+![](../figures/pg1553_query.png)
 
 Normally you would go to go to the NASA FSSC server website, input the selection criteria and download the files. However, in order to save time and bandwidth, *all the necessary files have already been downloaded and are available in the VM* in the folder `LAT_day02/data`. The data files are the following:
 
@@ -165,7 +165,7 @@ You will need to be patient because this will take quite a while. On my 2015 Mac
 - come see our computer cluster at the second floor of IAG
 - discuss gamma-ray astrophysics with your colleagues
 
-After the analysis finishes, you should get something similar to [this output from `enrico_sed`](./enrico_sed_output.txt). 
+After the analysis finishes, you should get something similar to [this output from `enrico_sed`](../examples/enrico_sed_output.txt).
 
 ## Exercise 1
 
@@ -194,5 +194,4 @@ You can use `enrico_testmodel` to compute the log(likelihood) of the `PowerLaw`,
 
 Next: [generate a spectral energy distribution](./sed.md).
 
-[Solutions to exercises](./likelihood-solutions.md).
-
+[Solutions to exercises](../solutions/likelihood-solutions.md).
